@@ -119,7 +119,7 @@ solution_for_p1 =
   "path/to/input/file"
   |> MyApp.Y23.Day1.read_file(:part_one)
   |> MyApp.Y23.Day1.parse_input(:part_one)
-  |> MyApp.Y23.Day1.part_one(:part_one)
+  |> MyApp.Y23.Day1.part_one()
 ```
 
 The generated tests will also call those functions one by one, so you can debug

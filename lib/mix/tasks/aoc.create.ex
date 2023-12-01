@@ -4,7 +4,8 @@ defmodule Mix.Tasks.Aoc.Create do
 
   @shortdoc "Create the files to solve a problem"
   def run(argv) do
-    Application.ensure_all_started(:aoc)
+    CLI.init_env()
+
 
     %{options: options} = CLI.parse_or_halt!(argv, CLI.year_day_command(__MODULE__))
     %{year: year, day: day} = CLI.validate_options!(options)

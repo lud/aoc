@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Aoc.Set do
   @shortdoc "Sets or reset default year and day options for other commands"
 
   def run(argv) do
-    Application.ensure_all_started(:aoc)
+    CLI.init_env()
 
     command = [
       module: __MODULE__,

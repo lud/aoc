@@ -1,19 +1,50 @@
 # Advent Of Code
 
-This is a small framework to help solving the [Advent of
-Code](https://adventofcode.com/) problems. Focus on the problems and it will
-take care of the rest.
-
-## Configure your cookie
-
-Retrieve your cookie from the AoC website and write the session ID in
-`$HOME/.adventofcode.session`.
-
+This is a small framework to help with [Advent of
+Code](https://adventofcode.com/) by managing inputs, tests and boilerplate code
+while you focus on problem solving in a TDD fashion.
 
 ## Installation
 
-    mix deps.get
-    mix compile
+### Install the library
+
+This framework is distributed as a library as it consists mostly of mix tasks.
+You may add the dependency to your project, or add it to a new project created
+with `mix new my_app`.
+
+```elixir
+defp deps do
+  [
+    {:aoc, "~> 0.1"},
+  ]
+end
+```
+
+### Configuration
+
+If it does not exist, create a configuration file in your application:
+
+```
+mkdir -p config
+touch config/config.exs
+```
+
+Then add the following configuration:
+
+```elixir
+import Config
+
+# The prefix is used when creating solutions and test modules with
+# `mix aoc.create`.
+config :aoc, prefix: MyApp
+```
+
+
+### Install your cookie
+
+Retrieve your cookie from the AoC website (with you browser developer tools) and write the session
+ID in `$HOME/.adventofcode.session`. It should be a long hex number like
+`53616c7465645f5f1d5792d97e3370392425dea84ca4653bd9a083f164ecd92278bef5b6bd50...`
 
 
 ## Use the commands
@@ -53,8 +84,10 @@ defmodule AoC.Y23.Day1 do
   alias AoC.Input, warn: false
 
   def read_file(file, _part) do
+    # Return each line
+    Input.stream!(file, trim: true)
+    # Or return the whole file
     # Input.read!(file)
-    # Input.stream!(file, trim: true)
   end
 
   def parse_input(input, _part) do
@@ -99,7 +132,10 @@ The different callbacks are:
 
 * `part_one/1` and `part_two/1` – The first argument is the result of
   `parse_input/2`. The return should be the solution to the problem that will be
-  printed by `mix aoc.run`. But some problems may require to print a drawing to
-  the console for instance, so you can return anything from those callbacks.
+  printed by `mix aoc.run`.
+
   The return value is also checked in the generated tests.
+
+  Some problems may require to print a drawing to the console, or produce other
+  side effects, so you may return a dummy value those callbacks.
 

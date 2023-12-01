@@ -88,7 +88,7 @@ The `mix aoc.create` command will generate modules with the boilerplate code to
 be called by `mix aoc.run` and the generated tests.
 
 ```elixir
-defmodule AoC.Y23.Day1 do
+defmodule MyApp.Y23.Day1 do
   alias AoC.Input, warn: false
 
   def read_file(file, _part) do
@@ -117,9 +117,9 @@ To call your code manually, you may use the following code:
 ```elixir
 solution_for_p1 =
   "path/to/input/file"
-  |> AoC.Y23.Day1.read_file(:part_one)
-  |> AoC.Y23.Day1.parse_input(:part_one)
-  |> AoC.Y23.Day1.part_one(:part_one)
+  |> MyApp.Y23.Day1.read_file(:part_one)
+  |> MyApp.Y23.Day1.parse_input(:part_one)
+  |> MyApp.Y23.Day1.part_one(:part_one)
 ```
 
 The generated tests will also call those functions one by one, so you can debug

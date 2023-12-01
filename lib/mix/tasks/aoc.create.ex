@@ -6,7 +6,6 @@ defmodule Mix.Tasks.Aoc.Create do
   def run(argv) do
     CLI.init_env()
 
-
     %{options: options} = CLI.parse_or_halt!(argv, CLI.year_day_command(__MODULE__))
     %{year: year, day: day} = CLI.validate_options!(options)
 

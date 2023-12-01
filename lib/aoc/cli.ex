@@ -2,10 +2,10 @@ defmodule AoC.CLI do
   alias AoC.CLI
   use CliMate
 
-def init_env do
-  Mix.Task.run("loadpaths")
-  Application.ensure_all_started(:aoc)
-end
+  def init_env do
+    Mix.Task.run("loadpaths")
+    Application.ensure_all_started(:aoc)
+  end
 
   def year_day_command(module) do
     [

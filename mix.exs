@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.1.0"
+  @version "0.2.0"
 
   def project do
     [
@@ -14,14 +14,13 @@ defmodule AoC.MixProject do
       deps: deps(),
       docs: docs(),
       modkit: modkit(),
-      package: package(),
+      package: package()
     ]
   end
 
   defp package do
     [
-      description:
-        "A small framework to solve Advent of Code problems in Elixir",
+      description: "A small framework to solve Advent of Code problems in Elixir",
       licenses: ["MIT"],
       maintainers: ["Ludovic Demblans <ludovic@demblans.com>"],
       links: %{"GitHub" => @source_url}
@@ -45,7 +44,7 @@ defmodule AoC.MixProject do
 
       # DX
       {:credo, "~> 1.6", only: [:dev], runtime: false},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
@@ -63,8 +62,6 @@ defmodule AoC.MixProject do
       preferred_envs: ["aoc.test": :test]
     ]
   end
-
-
 
   defp docs do
     [

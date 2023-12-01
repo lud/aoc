@@ -40,7 +40,7 @@ defmodule AoC.MixProject do
       # Lib
       {:cli_mate, "~> 0.1", runtime: false},
       {:jason, "~> 1.4"},
-      {:req, "~> 0.3.3"},
+      {:req, "~> 0.4.5"},
 
       # DX
       {:credo, "~> 1.6", only: [:dev], runtime: false},

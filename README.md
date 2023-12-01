@@ -68,6 +68,14 @@ possible to override the defaults with the `mix aoc.set` command.
 
 ## Defaults management commands
 
+The `mix aoc.set` command allows to set the default year and day. Those values
+are used by default when other commands are not called with `--year` or `--day`
+options.
+
+This is useful when working on a problem from a previous year, or when you
+finish the last days after December 25th, so your CLI history or bash scripts
+can just call `mix aoc.test` or `mix aoc.run` without options.
+
 * `mix aoc.set --year 2022` – Set the default year to 2022
 * `mix aoc.set --day 12` – Set the default day
 * `mix aoc.set --year 2022 --day 12` – Set both defaults

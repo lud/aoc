@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Aoc.Run do
   @shortdoc "Run the solution for a given year and day"
 
   def run(argv) do
+    CLI.compile()
     CLI.init_env()
 
     %{options: options} = CLI.parse_or_halt!(argv, CLI.part_command(__MODULE__))

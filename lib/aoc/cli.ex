@@ -3,8 +3,12 @@ defmodule AoC.CLI do
   use CliMate
 
   def init_env do
-    Mix.Task.run("loadpaths")
     Application.ensure_all_started(:aoc)
+    Mix.Task.run("loadpaths")
+  end
+
+  def compile do
+    Mix.Task.run("compile")
   end
 
   def year_day_command(module) do

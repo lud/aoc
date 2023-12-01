@@ -11,24 +11,23 @@ defmodule AoC.CLI do
     Mix.Task.run("compile")
   end
 
-  def year_day_command(module) do
+  def year_day_command(module, opts \\ []) do
     [
       module: module,
-      options: [
-        year: [type: :integer, short: :y, doc: "Year of the puzzle", default: default_year()],
-        day: [type: :integer, short: :d, doc: "Day of the puzzle"] ++ default_day_optlist()
-      ]
+      options:
+        Keyword.merge(
+          [
+            year: [type: :integer, short: :y, doc: "Year of the puzzle", default: default_year()],
+            day: [type: :integer, short: :d, doc: "Day of the puzzle"] ++ default_day_optlist()
+          ],
+          opts
+        )
     ]
   end
 
   def part_command(module) do
-    module
-    |> year_day_command()
-    |> put_in([:options, :part],
-      type: :integer,
-      short: :p,
-      doc: "Part of the puzzle",
-      default: nil
+    year_day_command(module,
+      part: [type: :integer, short: :p, doc: "Part of the puzzle", default: nil]
     )
   end
 

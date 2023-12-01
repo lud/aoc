@@ -90,7 +90,7 @@ defmodule Mix.Tasks.Aoc.Create do
   end
 
   defp test_code(test_module, module, _test_path, year, day) do
-    ~s[
+    ~s'
     defmodule #{inspect(test_module)} do
       alias AoC.Input, warn: false
       alias #{inspect(module)}, as: Solution, warn: false
@@ -98,8 +98,9 @@ defmodule Mix.Tasks.Aoc.Create do
 
       # To run the test, run one of the following commands:
       #
-      #     mix test test/#{year}/day#{day}_test.exs
       #     mix AoC.test --year #{year} --day #{day}
+      #
+      #     mix test test/#{year}/day#{day}_test.exs
       #
       # To run the solution
       #
@@ -109,41 +110,49 @@ defmodule Mix.Tasks.Aoc.Create do
       #
       #     {:ok, path} = Input.resolve(#{year}, #{day}, "sample")
       #
+      # Good luck!
 
-      @sample_1 """
-      This is
-      A Fake
-      Data file
-      """
 
-      test "verify #{year}/#{day} part_one - samples" do
+      defp solve(input, part) do
         problem =
-          @sample_1
+          input
           |> Input.as_file()
           |> Solution.read_file(:part_one)
           |> Solution.parse_input(:part_one)
 
-        expected = CHANGE_ME
-        assert expected == Solution.part_one(problem)
+        apply(Solution, part, [problem])
       end
 
-      # test "verify #{year}/#{day} part_two - samples" do
-      #   problem =
-      #     @sample_1
-      #     |> Input.as_file()
-      #     |> Solution.read_file(:part_two)
-      #     |> Solution.parse_input(:part_two)
+      test "part one example" do
+        input = """
+        This is an
+        example input.
+        replace with
+        an example from
+        the AoC website.
+        """
+
+        assert CHANGE_ME == solve(input, :part_one)
+      end
+
+      # test "part two example" do
+      #   input = """
+      #   This is an
+      #   example input.
+      #   replace with
+      #   an example from
+      #   the AoC website.
+      #   """
       #
-      #   expected = CHANGE_ME
-      #   assert expected == Solution.part_two(problem)
+      #   assert CHANGE_ME == solve(input, :part_two)
       # end
 
-      # Once your part one was successfully sumbitted, you may uncomment this test
+      # Once your part-one was successfully sumbitted, you may uncomment this test
       # to ensure your implementation was not altered when you implement part two.
 
       # @part_one_solution CHANGE_ME
       #
-      # test "verify #{year}/#{day} part one" do
+      # test "part one solution" do
       #   assert {:ok, @part_one_solution} == AoC.run(#{year}, #{day}, :part_one)
       # end
 
@@ -152,11 +161,11 @@ defmodule Mix.Tasks.Aoc.Create do
 
       # @part_two_solution CHANGE_ME
       #
-      # test "verify #{year}/#{day} part two" do
+      # test "part two solution" do
       #   assert {:ok, @part_two_solution} == AoC.run(#{year}, #{day}, :part_two)
       # end
 
     end
-    ]
+    '
   end
 end

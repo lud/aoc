@@ -1,15 +1,29 @@
 defmodule AoC.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/lud/aoc"
+
   def project do
     [
       app: :aoc,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
-      deps: deps(),
       cli: cli(),
-      modkit: modkit()
+      deps: deps(),
+      docs: docs(),
+      modkit: modkit(),
+      package: package(),
+    ]
+  end
+
+  defp package do
+    [
+      description:
+        "A small framework to solve Advent of Code problems in Elixir",
+      licenses: ["MIT"],
+      maintainers: ["Ludovic Demblans <ludovic@demblans.com>"],
+      links: %{"GitHub" => @source_url}
     ]
   end
 
@@ -23,10 +37,14 @@ defmodule AoC.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:req, "~> 0.3.3"},
+      # Lib
+      {:cli_mate, "~> 0.1", runtime: false},
       {:jason, "~> 1.4"},
+      {:req, "~> 0.3.3"},
+
+      # DX
       {:credo, "~> 1.6", only: [:dev], runtime: false},
-      {:cli_mate, "~> 0.1", runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
     ]
   end
 
@@ -42,6 +60,21 @@ defmodule AoC.MixProject do
   def cli do
     [
       preferred_envs: ["aoc.test": :test]
+    ]
+  end
+
+
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}",
+      formatters: ["html"]
     ]
   end
 end

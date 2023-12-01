@@ -1,12 +1,16 @@
 # Advent Of Code
 
+This is a small framework to help solving the [Advent of
+Code](https://adventofcode.com/) problems. Focus on the problems and it will
+take care of the rest.
+
 ## Configure your cookie
 
 Retrieve your cookie from the AoC website and write the session ID in
 `$HOME/.adventofcode.session`.
 
 
-## Install
+## Installation
 
     mix deps.get
     mix compile

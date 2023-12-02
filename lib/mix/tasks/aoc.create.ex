@@ -117,8 +117,8 @@ defmodule Mix.Tasks.Aoc.Create do
         problem =
           input
           |> Input.as_file()
-          |> Solution.read_file(:part_one)
-          |> Solution.parse_input(:part_one)
+          |> Solution.read_file(part)
+          |> Solution.parse_input(part)
 
         apply(Solution, part, [problem])
       end

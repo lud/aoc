@@ -112,7 +112,6 @@ defmodule Mix.Tasks.Aoc.Create do
       #
       # Good luck!
 
-
       defp solve(input, part) do
         problem =
           input
@@ -135,6 +134,15 @@ defmodule Mix.Tasks.Aoc.Create do
         assert CHANGE_ME == solve(input, :part_one)
       end
 
+      # Once your part one was successfully sumbitted, you may uncomment this test
+      # to ensure your implementation was not altered when you implement part two.
+
+      # @part_one_solution CHANGE_ME
+      #
+      # test "part one solution" do
+      #   assert {:ok, @part_one_solution} == AoC.run(#{year}, #{day}, :part_one)
+      # end
+
       # test "part two example" do
       #   input = """
       #   This is an
@@ -145,15 +153,6 @@ defmodule Mix.Tasks.Aoc.Create do
       #   """
       #
       #   assert CHANGE_ME == solve(input, :part_two)
-      # end
-
-      # Once your part-one was successfully sumbitted, you may uncomment this test
-      # to ensure your implementation was not altered when you implement part two.
-
-      # @part_one_solution CHANGE_ME
-      #
-      # test "part one solution" do
-      #   assert {:ok, @part_one_solution} == AoC.run(#{year}, #{day}, :part_one)
       # end
 
       # You may also implement a test to validate the part two to ensure that you

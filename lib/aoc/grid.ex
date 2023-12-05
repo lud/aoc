@@ -1,6 +1,6 @@
 defmodule AoC.Grid do
-  def parse_stream(string, char_parser) when is_function(char_parser, 1) do
-    string
+  def parse_stream(lines, char_parser) when is_function(char_parser, 1) do
+    lines
     |> Enum.with_index()
     |> Enum.flat_map(&parse_line(&1, char_parser))
     |> Map.new()

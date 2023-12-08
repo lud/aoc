@@ -25,9 +25,10 @@ defmodule AoC.CLI do
     ]
   end
 
-  def part_command(module) do
-    year_day_command(module,
-      part: [type: :integer, short: :p, doc: "Part of the puzzle", default: nil]
+  def part_command(module, opts \\ []) do
+    year_day_command(
+      module,
+      [part: [type: :integer, short: :p, doc: "Part of the puzzle", default: nil]] ++ opts
     )
   end
 
@@ -41,14 +42,28 @@ defmodule AoC.CLI do
 
   def validate_options!(options) do
     case Map.fetch(options, :year) do
-      {:ok, year} when not is_valid_year(year) -> raise "Invalid year: #{year}"
-      _ -> :ok
+      {:ok, year} when not is_valid_year(year) ->
+        raise "Invalid year: #{year}"
+
+      {:ok, year} ->
+        if year != today_year() and year == default_year() do
+          CLI.warn("Using default year #{year}")
+        end
+
+        :ok
     end
 
     case Map.fetch(options, :day) do
-      {:ok, day} when not is_valid_day(day) -> raise "Invalid day: #{day}"
-      :error -> raise "Missing day option"
-      _ -> :ok
+      {:ok, day} when not is_valid_day(day) ->
+        raise "Invalid day: #{day}"
+
+      :error ->
+        raise "Missing day option"
+
+      {:ok, day} ->
+        if day != today_day() and day == default_day() do
+          CLI.warn("Using default day #{day}")
+        end
     end
 
     case Map.fetch(options, :part) do
@@ -64,27 +79,31 @@ defmodule AoC.CLI do
 
   defp default_year do
     case read_defaults() do
-      %{year: year} when is_valid_year(year) ->
-        CLI.writeln(CLI.color(:yellow, "Using forced default year #{year}"))
-        year
-
-      _ ->
-        Date.utc_today().year
+      %{year: year} when is_valid_year(year) -> year
+      _ -> today_year()
     end
   end
 
-  defp default_day_optlist do
-    case read_defaults() do
-      %{day: day} when is_valid_day(day) ->
-        CLI.writeln(CLI.color(:yellow, "Using forced default day #{day}"))
-        [default: day]
+  defp today_year do
+    Date.utc_today().year
+  end
 
-      _ ->
-        case Date.utc_today().day do
-          day when is_valid_day(day) -> [default: day]
-          _ -> []
-        end
+  defp default_day_optlist do
+    case default_day() do
+      day when is_valid_day(day) -> [default: day]
+      _ -> []
     end
+  end
+
+  defp default_day do
+    case read_defaults() do
+      %{day: day} when is_valid_day(day) -> day
+      _ -> today_day()
+    end
+  end
+
+  defp today_day do
+    Date.utc_today().day
   end
 
   defp defaults_file do
@@ -95,7 +114,7 @@ defmodule AoC.CLI do
     data =
       defaults
       |> Map.take([:year, :day])
-      |> IO.inspect(label: "New default options")
+      |> tap(&CLI.writeln(["New default options: ", inspect(&1)]))
       |> :erlang.term_to_binary()
 
     File.write(defaults_file(), data)

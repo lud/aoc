@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.7.0"
+  @version "0.8.0"
 
   def project do
     [
@@ -41,6 +41,7 @@ defmodule AoC.MixProject do
       {:cli_mate, "~> 0.1", runtime: false},
       {:jason, "~> 1.4"},
       {:req, "~> 0.4.5"},
+      {:benchee, "~> 1.2"},
 
       # DX
       {:credo, "~> 1.6", only: [:dev], runtime: false},

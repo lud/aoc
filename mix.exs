@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.8.0"
+  @version "0.9.0"
 
   def project do
     [

@@ -17,14 +17,9 @@ defmodule Mix.Tasks.Aoc.Create do
     Mix.Task.run("compile")
 
     case Task.await(download_input) do
-      {:ok, path} ->
-        Mix.Shell.IO.info("Input file exists in #{path}")
-
-      {:error, reason} ->
-        Mix.Shell.IO.info("Warning: Could not download input: #{inspect(reason)}")
+      {:ok, path} -> print_path("Input file", path)
+      {:error, reason} -> CLI.warn("Warning: Could not download input: #{inspect(reason)}")
     end
-
-    Mix.Shell.IO.info("ok")
   end
 
   defp ensure_solution_module(year, day) do
@@ -32,16 +27,14 @@ defmodule Mix.Tasks.Aoc.Create do
     File.mkdir_p!(module_dir)
     module_path = Path.join(module_dir, "day#{day}.ex")
 
-    if File.exists?(module_path) do
-      Mix.Shell.IO.info("Module exists in #{module_path}")
-    else
+    if not File.exists?(module_path) do
       module = AoC.Mod.module_name(year, day)
       code = module_code(module)
-      Mix.Shell.IO.info("Creating module #{inspect(module)} in #{module_path}")
+      Mix.Shell.IO.info("Creating module #{inspect(module)}")
       File.write!(module_path, code)
     end
 
-    :ok
+    print_path("Solution module", module_path)
   end
 
   defp ensure_test(year, day) do
@@ -49,17 +42,21 @@ defmodule Mix.Tasks.Aoc.Create do
     File.mkdir_p!(test_dir)
     test_path = Path.join(test_dir, "day#{day}_test.exs")
 
-    if File.exists?(test_path) do
-      Mix.Shell.IO.info("Test module exists in #{test_path}")
-    else
+    if not File.exists?(test_path) do
       test_module = AoC.Mod.test_module_name(year, day)
       module = AoC.Mod.module_name(year, day)
       code = test_code(test_module, module, test_path, year, day)
-      Mix.Shell.IO.info("Creating test module #{inspect(test_module)} in #{test_path}")
+      Mix.Shell.IO.info("Creating test module #{inspect(test_module)}")
       File.write!(test_path, code)
     end
 
+    print_path("Test module", test_path)
+
     :ok
+  end
+
+  def print_path(name, path) do
+    CLI.writeln([CLI.color(:magenta, name), "\n", path])
   end
 
   defp module_code(module) do

@@ -120,7 +120,7 @@ defmodule Mix.Tasks.Aoc.Create do
       end
 
       test "part one example" do
-        input = """
+        input = ~S"""
         This is an
         example input.
         replace with
@@ -141,7 +141,7 @@ defmodule Mix.Tasks.Aoc.Create do
       # end
 
       # test "part two example" do
-      #   input = """
+      #   input = ~S"""
       #   This is an
       #   example input.
       #   replace with

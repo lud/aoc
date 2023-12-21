@@ -89,7 +89,7 @@ defmodule Mix.Tasks.Aoc.Run do
   end
 
   defp run_error_message(%{__exception__: true} = e, stack) do
-    Exception.format_banner(:error, e, stack)
+    Exception.format(:error, e, stack)
   end
 
   defp run_error_message({kind, e}, stack) when kind in [:error, :throw, :exit] do

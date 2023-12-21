@@ -21,6 +21,7 @@ defmodule AoC.Grid do
     case char_parser.(cell) do
       :ignore -> []
       {:ok, value} -> [{{x, y}, value}]
+      other -> raise "Invalid return value from parser function in AoC.Grid.parse_stream/2, expected {:ok, value} or :ignore, got: #{inspect(other)}"
     end
   end
 
@@ -44,6 +45,11 @@ defmodule AoC.Grid do
   def max_y({_, a}, b) when is_integer(b), do: max(a, b)
   def min_y({_, a}, {_, b}), do: min(a, b)
   def min_y({_, a}, b) when is_integer(b), do: min(a, b)
+
+  def bounds(map) when map_size(map) == 1 do
+    [{x, y}] = Map.keys(map)
+    {x, x, y, y}
+  end
 
   def bounds(map) when is_map(map) do
     keys = Map.keys(map)
@@ -82,7 +88,7 @@ defmodule AoC.Grid do
     {:found, x} -> x
   end
 
-  defp bfs_path(map, open, end_pos, get_neighs, round, seen) do
+  defp bfs_path(map, [_ | _] = open, end_pos, get_neighs, round, seen) do
     neighs =
       open
       |> Enum.flat_map(fn pos -> get_neighs.(pos, map) end)
@@ -96,6 +102,10 @@ defmodule AoC.Grid do
     seen = Map.merge(seen, Map.new(neighs, &{&1, true}))
 
     bfs_path(map, neighs, end_pos, get_neighs, round + 1, seen)
+  end
+
+  defp bfs_path(_, [], _, _, _, _) do
+    throw(:not_found)
   end
 
   def cardinal4(xy) do

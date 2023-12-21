@@ -12,6 +12,8 @@ defmodule Mix.Tasks.Aoc.Test do
       CLI.year_day_command(__MODULE__,
         trace: [type: :boolean, doc: "forward option to `mix test`"],
         stale: [type: :boolean, doc: "forward option to `mix test`"],
+        failed: [type: :boolean, doc: "forward option to `mix test`"],
+        seed: [type: :integer, doc: "forward option to `mix test`"],
         max_failures: [type: :integer, doc: "forward option to `mix test`"]
       )
 
@@ -26,6 +28,8 @@ defmodule Mix.Tasks.Aoc.Test do
       {:trace, true} -> ["--trace"]
       {:max_failures, n} -> ["--max-failures", Integer.to_string(n)]
       {:stale, true} -> ["--stale"]
+      {:seed, n} -> ["--seed", Integer.to_string(n)]
+      {:failed, true} -> ["--failed"]
       _ -> []
     end)
   end

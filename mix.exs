@@ -24,7 +24,7 @@ defmodule AoC.MixProject do
       description: "A small framework to solve Advent of Code problems in Elixir",
       licenses: ["MIT"],
       maintainers: ["Ludovic Demblans <ludovic@demblans.com>"],
-      links: %{"GitHub" => @source_url}
+      links: %{"GitHub" => @source_url, "Change Log" => "https://github.com/lud/aoc/blob/main/CHANGELOG.md"},
     ]
   end
 

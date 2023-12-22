@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.11.0"
+  @version "0.11.1"
 
   def project do
     [
@@ -82,16 +82,31 @@ defmodule AoC.MixProject do
     [
       annotate: true,
       before_commit: [
-        fn vsn ->
-          case System.cmd("git", ["cliff", "--tag", vsn, "-o", "CHANGELOG.md"],
-                 stderr_to_stdout: true
-               ) do
-            {_, 0} -> IO.puts("Updated CHANGELOG.md with #{vsn}")
-            {out, _} -> {:error, "Could not update CHANGELOG.md:\n\n #{out}"}
-          end
-        end,
-        add: "CHANGELOG.md"
+        &update_readme/1,
+        {:add, "README.md"},
+        &gen_changelog/1,
+        {:add, "CHANGELOG.md"}
       ]
     ]
+  end
+
+  defp update_readme(vsn) do
+    version = Version.parse!(vsn)
+    readme_vsn = "#{version.major}.#{version.minor}"
+    readme = File.read!("README.md")
+    re = ~r/:aoc, "~> \d+\.\d+"/
+
+    readme =
+      String.replace(readme, re = ~r/:aoc, "~> \d+\.\d+"/, ":aoc, \"~> #{readme_vsn}\"")
+
+    File.write!("README.md", readme)
+    :ok
+  end
+
+  defp gen_changelog(vsn) do
+    case System.cmd("git", ["cliff", "--tag", vsn, "-o", "CHANGELOG.md"], stderr_to_stdout: true) do
+      {_, 0} -> IO.puts("Updated CHANGELOG.md with #{vsn}")
+      {out, _} -> {:error, "Could not update CHANGELOG.md:\n\n #{out}"}
+    end
   end
 end

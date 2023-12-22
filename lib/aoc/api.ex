@@ -15,7 +15,7 @@ defmodule AoC.API do
     cookie = read_cookie!()
 
     headers = [
-      "user-agent": "a gentle elixir client that will only download inputs once",
+      "user-agent": "github.com/lud/aoc",
       cookie: "session=#{cookie}"
     ]
 

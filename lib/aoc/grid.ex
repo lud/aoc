@@ -19,9 +19,14 @@ defmodule AoC.Grid do
 
   defp parse_cell({cell, x}, y, char_parser) do
     case char_parser.(cell) do
-      :ignore -> []
-      {:ok, value} -> [{{x, y}, value}]
-      other -> raise "Invalid return value from parser function in AoC.Grid.parse_stream/2, expected {:ok, value} or :ignore, got: #{inspect(other)}"
+      :ignore ->
+        []
+
+      {:ok, value} ->
+        [{{x, y}, value}]
+
+      other ->
+        raise "Invalid return value from parser function in AoC.Grid.parse_stream/2, expected {:ok, value} or :ignore, got: #{inspect(other)}"
     end
   end
 
@@ -56,7 +61,7 @@ defmodule AoC.Grid do
     {min_x(keys), max_x(keys), min_y(keys), max_y(keys)}
   end
 
-  def print_map(map, print_char \\ &self_char/1) do
+  def format_map(map, print_char \\ &self_char/1) do
     {xl, xh, yl, yh} = bounds(map)
 
     for y <- yl..yh do
@@ -67,7 +72,10 @@ defmodule AoC.Grid do
         end
       ]
     end
-    |> IO.puts()
+  end
+
+  def print_map(map, print_char \\ &self_char/1) do
+    IO.puts(format_map(map, print_char))
 
     map
   end

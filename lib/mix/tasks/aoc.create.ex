@@ -79,9 +79,9 @@ defmodule Mix.Tasks.Aoc.Create do
         problem
       end
 
-      def part_two(problem) do
-        problem
-      end
+      # def part_two(problem) do
+      #   problem
+      # end
     end
     """
   end

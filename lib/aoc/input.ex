@@ -102,9 +102,8 @@ defmodule AoC.Input do
       {:error, :enoent} ->
         case suffix do
           nil ->
-            with {:ok, content} <- AoC.API.fetch_input(year, day),
-                 {:ok, wrote_path} <- write_input(year, day, content) do
-              {:ok, wrote_path}
+            with {:ok, content} <- AoC.API.fetch_input(year, day) do
+              write_input(year, day, content)
             end
 
           _ ->

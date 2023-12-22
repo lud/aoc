@@ -13,6 +13,7 @@ defmodule AoC.MixProject do
       cli: cli(),
       deps: deps(),
       docs: docs(),
+      versioning: versioning(),
       modkit: modkit(),
       package: package()
     ]
@@ -74,6 +75,23 @@ defmodule AoC.MixProject do
       source_url: @source_url,
       source_ref: "v#{@version}",
       formatters: ["html"]
+    ]
+  end
+
+  defp versioning do
+    [
+      annotate: true,
+      before_commit: [
+        fn vsn ->
+          case System.cmd("git", ["cliff", "--tag", vsn, "-o", "CHANGELOG.md"],
+                 stderr_to_stdout: true
+               ) do
+            {_, 0} -> IO.puts("Updated CHANGELOG.md with #{vsn}")
+            {out, _} -> {:error, "Could not update CHANGELOG.md:\n\n #{out}"}
+          end
+        end,
+        add: "CHANGELOG.md"
+      ]
     ]
   end
 end

@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.11.1"
+  @version "0.11.2"
 
   def project do
     [
@@ -24,7 +24,10 @@ defmodule AoC.MixProject do
       description: "A small framework to solve Advent of Code problems in Elixir",
       licenses: ["MIT"],
       maintainers: ["Ludovic Demblans <ludovic@demblans.com>"],
-      links: %{"GitHub" => @source_url, "Change Log" => "https://github.com/lud/aoc/blob/main/CHANGELOG.md"},
+      links: %{
+        "GitHub" => @source_url,
+        "Change Log" => "https://github.com/lud/aoc/blob/main/CHANGELOG.md"
+      }
     ]
   end
 
@@ -39,7 +42,7 @@ defmodule AoC.MixProject do
   defp deps do
     [
       # Lib
-      {:cli_mate, "~> 0.1", runtime: false},
+      {:cli_mate, "~> 0.2", runtime: false},
       {:jason, "~> 1.4"},
       {:req, "~> 0.4.5"},
       {:benchee, "~> 1.2"},
@@ -95,10 +98,7 @@ defmodule AoC.MixProject do
     readme_vsn = "#{version.major}.#{version.minor}"
     readme = File.read!("README.md")
     re = ~r/:aoc, "~> \d+\.\d+"/
-
-    readme =
-      String.replace(readme, re = ~r/:aoc, "~> \d+\.\d+"/, ":aoc, \"~> #{readme_vsn}\"")
-
+    readme = String.replace(readme, re, ":aoc, \"~> #{readme_vsn}\"")
     File.write!("README.md", readme)
     :ok
   end

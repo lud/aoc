@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.2] - 2023-12-30
+
+### Miscellaneous Tasks
+
+- Added github URL in user agent
+
 ## [0.11.1] - 2023-12-22
 
 ### Features

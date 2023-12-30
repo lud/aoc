@@ -97,8 +97,6 @@ defmodule AoC.CLI do
   defp custom_defaults do
     pt_key = :aoc_custom_defaults
 
-    :persistent_term.get(pt_key, nil) |> IO.inspect(label: ~S/:persistent_term.get(pt_key, nil)/)
-
     case :persistent_term.get(pt_key, nil) do
       nil ->
         defaults = read_defaults()

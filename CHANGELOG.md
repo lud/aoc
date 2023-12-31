@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.4] - 2023-12-31
+
+### Features
+
+- Added the AoC.Rect module to work with rectangle in grids
+
 ## [0.11.3] - 2023-12-30
 
 ### Miscellaneous Tasks

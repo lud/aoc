@@ -96,7 +96,7 @@ be called by `mix aoc.run` and the generated tests.
 
 ```elixir
 defmodule MyApp.Y23.Day1 do
-  alias AoC.Input, warn: false
+  alias AoC.Input
 
   def read_file(file, _part) do
     # Return each line

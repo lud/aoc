@@ -62,7 +62,7 @@ defmodule Mix.Tasks.Aoc.Create do
   defp module_code(module) do
     """
     defmodule #{inspect(module)} do
-      alias AoC.Input, warn: false
+      alias AoC.Input
 
       def read_file(file, _part) do
         # Return each line

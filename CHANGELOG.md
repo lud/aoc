@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.5] - 2024-01-02
+
+### Features
+
+- Added AoC.Permutations tool
+
 ## [0.11.4] - 2023-12-31
 
 ### Features

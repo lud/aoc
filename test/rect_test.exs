@@ -12,7 +12,8 @@ defmodule AoC.RectTest do
   end
 
   defp print_rects(rectangles, f \\ fn _, value -> value end) do
-    to_grid(rectangles, f)
+    rectangles
+    |> to_grid(f)
     |> Grid.print_map(fn
       nil -> "⋅"
       char when is_binary(char) -> char

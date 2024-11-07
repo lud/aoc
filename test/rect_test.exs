@@ -12,14 +12,17 @@ defmodule AoC.RectTest do
   end
 
   defp print_rects(rectangles, f \\ fn _, value -> value end) do
-    rectangles
-    |> to_grid(f)
-    |> Grid.print_map(fn
-      nil -> "⋅"
-      char when is_binary(char) -> char
-      n when is_integer(n) -> Integer.to_string(n)
-      {:split, 1} -> "X"
-    end)
+    _ =
+      ExUnit.CaptureIO.capture_io(fn ->
+        rectangles
+        |> to_grid(f)
+        |> Grid.print_map(fn
+          nil -> "⋅"
+          char when is_binary(char) -> char
+          n when is_integer(n) -> Integer.to_string(n)
+          {:split, 1} -> "X"
+        end)
+      end)
   end
 
   test "building a rectangle" do

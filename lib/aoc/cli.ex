@@ -120,7 +120,6 @@ defmodule AoC.CLI do
   end
 
   defp dump_defaults(defaults) do
-
     Enum.each(@custom_defaults_keys, fn key ->
       case Map.fetch(defaults, key) do
         {:ok, v} -> CLI.warn("Using default #{key}: #{inspect(v)}")

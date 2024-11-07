@@ -51,6 +51,11 @@ defmodule AoC.Grid do
   def min_y({_, a}, {_, b}), do: min(a, b)
   def min_y({_, a}, b) when is_integer(b), do: min(a, b)
 
+  @doc """
+  Returns {min_x, max_x, min_y, max_y} for the given map.
+
+      {xa, xo, ya, yo} = Grid.bounds(grid)
+  """
   def bounds(map) when map_size(map) == 1 do
     [{x, y}] = Map.keys(map)
     {x, x, y, y}

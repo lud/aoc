@@ -39,6 +39,23 @@ import Config
 config :aoc, prefix: MyApp
 ```
 
+### Test configuration
+
+In order to run the `aoc.test` command described later in this document, you
+need to declare that command as a test environment command.
+
+In your`mix.exs` file, declare the following function:
+
+```elixir
+# mix.exs
+def cli do
+  [
+    preferred_envs: ["aoc.test": :test]
+  ]
+end
+```
+
+You can of course define a `cli/0` function just like `deps/0` and declare `cli: cli()` instead.
 
 ### Install your cookie
 
@@ -135,7 +152,7 @@ and assert each part separately.
 The different callbacks are:
 
 * `read_file/2` and `parse_input/2` – The first one accepts an input file path,
-  or a `AoC.Input.FakeFile` struct from the tests. Call `Input.read!` or
+  or a `AoC.Input.TestInput` struct from the tests. Call `Input.read!` or
   `Input.stream!` to return the whole contents or a stream of lines.
 
   The return value will be passed to `parse_input/2`. This allows to separate

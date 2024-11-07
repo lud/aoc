@@ -1,0 +1,73 @@
+defmodule <%= inspect vars.test_module %> do
+  alias AoC.Input, warn: false
+  alias <%= inspect vars.module %>, as: Solution, warn: false
+  use ExUnit.Case, async: true
+
+  # To run the test, run one of the following commands:
+  #
+  #     mix AoC.test --year <%= vars.year %> --day <%= vars.day %>
+  #
+  #     mix test test/<%= vars.year %>/day<%= vars.padded_day %>_test.exs
+  #
+  # To run the solution
+  #
+  #     mix AoC.run --year <%= vars.year %> --day <%= vars.day %> --part 1
+  #
+  # Use sample input file:
+  #
+  #     # returns {:ok, "priv/input/<%= vars.year %>/day-<%= vars.padded_day %>-mysuffix.inp"}
+  #     {:ok, path} = Input.resolve(<%= vars.year %>, <%= vars.day %>, "mysuffix")
+  #
+  # Good luck!
+
+  defp solve(input, part) do
+    problem =
+      input
+      |> Input.as_file()
+      |> Solution.parse(part)
+
+    apply(Solution, part, [problem])
+  end
+
+  test "part one example" do
+    input = ~S"""
+    This is an
+    example input.
+    replace with
+    an example from
+    the AoC website.
+    """
+
+    assert CHANGE_ME == solve(input, :part_one)
+  end
+
+  # Once your part one was successfully sumbitted, you may uncomment this test
+  # to ensure your implementation was not altered when you implement part two.
+
+  # @part_one_solution CHANGE_ME
+  #
+  # test "part one solution" do
+  #   assert {:ok, @part_one_solution} == AoC.run(<%= vars.year %>, <%= vars.day %>, :part_one)
+  # end
+
+  # test "part two example" do
+  #   input = ~S"""
+  #   This is an
+  #   example input.
+  #   replace with
+  #   an example from
+  #   the AoC website.
+  #   """
+  #
+  #   assert CHANGE_ME == solve(input, :part_two)
+  # end
+
+  # You may also implement a test to validate the part two to ensure that you
+  # did not broke your shared modules when implementing another problem.
+
+  # @part_two_solution CHANGE_ME
+  #
+  # test "part two solution" do
+  #   assert {:ok, @part_two_solution} == AoC.run(<%= vars.year %>, <%= vars.day %>, :part_two)
+  # end
+end

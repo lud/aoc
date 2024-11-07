@@ -13,10 +13,10 @@ defmodule AoC.Permutations do
   The function accepts either a list or a range. Other enums must be converted
   to list manually before calling this function.
   """
-  def of([_ | count] = list) do
+  def of([_ | tail] = list) do
     stream = [{[], list}]
 
-    count
+    tail
     |> Enum.reduce(stream, fn _iter, stream -> Stream.flat_map(stream, &permutation_step/1) end)
     |> Stream.map(&unwrap_permutations/1)
   end

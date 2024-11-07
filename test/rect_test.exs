@@ -1,6 +1,6 @@
 defmodule AoC.RectTest do
-  alias AoC.Rect
   alias AoC.Grid
+  alias AoC.Rect
   use ExUnit.Case, async: true
 
   defp to_grid(rectangles, f) do

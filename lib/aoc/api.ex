@@ -1,5 +1,8 @@
 defmodule AoC.API do
-  require AoC.CLI
+  @mix_version Mix.Project.get!().project() |> Keyword.fetch!(:version)
+  def user_agent do
+    "github.com/lud/aoc #{@mix_version}"
+  end
 
   def fetch_input(year, day) do
     get_http(input_url(year, day))
@@ -9,17 +12,19 @@ defmodule AoC.API do
     "https://adventofcode.com/#{year}/day/#{day}/input"
   end
 
+  def headers do
+    cookie = read_cookie!()
+
+    [
+      "user-agent": user_agent(),
+      cookie: "session=#{cookie}"
+    ]
+  end
+
   defp get_http(url) do
     IO.puts("Fetching #{url}")
 
-    cookie = read_cookie!()
-
-    headers = [
-      "user-agent": "github.com/lud/aoc",
-      cookie: "session=#{cookie}"
-    ]
-
-    case Req.request(method: :get, url: url, headers: headers) do
+    case Req.request(method: :get, url: url, headers: headers()) do
       {:ok, %Req.Response{status: 200, body: body}} ->
         {:ok, body}
 
@@ -31,9 +36,13 @@ defmodule AoC.API do
     end
   end
 
-  defp read_cookie! do
+  def cookie_path do
     home = System.fetch_env!("HOME")
-    path = Path.join(home, ".adventofcode.session")
+    Path.join(home, ".adventofcode.session")
+  end
+
+  defp read_cookie! do
+    path = cookie_path()
 
     if !File.exists?(path) do
       raise "Missing session cookie file: #{path}"

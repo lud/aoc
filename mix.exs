@@ -43,13 +43,13 @@ defmodule AoC.MixProject do
     [
       # Lib
       {:cli_mate, "~> 0.2", runtime: false},
-      {:jason, "~> 1.4"},
       {:req, "~> 0.5"},
       {:benchee, "~> 1.2"},
 
       # DX
       {:credo, "~> 1.6", only: :dev, runtime: false},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.4", only: :dev, runtime: false}
     ]
   end
 

@@ -1,17 +1,19 @@
 defmodule AoC.Input do
-  defmodule FakeFile do
+  alias AoC.CodeGen
+
+  defmodule TestInput do
     defstruct content: ""
   end
 
   def as_file(content) when is_binary(content) do
-    %FakeFile{content: content}
+    %TestInput{content: content}
   end
 
   def read!(path) when is_binary(path) do
     File.read!(path)
   end
 
-  def read!(%FakeFile{content: content}) do
+  def read!(%TestInput{content: content}) do
     content
   end
 
@@ -25,7 +27,7 @@ defmodule AoC.Input do
 
   def stream_file_lines(path, opts \\ [])
 
-  def stream_file_lines(%FakeFile{content: content}, opts) do
+  def stream_file_lines(%TestInput{content: content}, opts) do
     content
     |> String.split("\n")
     |> apply_stream_opts(opts)
@@ -116,11 +118,13 @@ defmodule AoC.Input do
   def input_path(year, day, suffix \\ nil)
 
   def input_path(year, day, nil) do
-    Path.join(year_dir(year), "day-#{day}.inp")
+    day_str = CodeGen.pad_day(day)
+    Path.join(year_dir(year), "day-#{day_str}.inp")
   end
 
   def input_path(year, day, suffix) when is_binary(suffix) do
-    Path.join(year_dir(year), "day-#{day}-#{suffix}.inp")
+    day_str = CodeGen.pad_day(day)
+    Path.join(year_dir(year), "day-#{day_str}-#{suffix}.inp")
   end
 
   defp input_root_path do
@@ -141,7 +145,7 @@ defmodule AoC.Input do
   end
 
   defp ensure_gitignore do
-    path = Path.join(input_root_path(), ".gitignore") |> dbg()
+    path = Path.join(input_root_path(), ".gitignore")
 
     if File.regular?(path) do
       :ok

@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Aoc.Run do
 
     command =
       CLI.part_command(__MODULE__,
-        benchmark: [type: :boolean, short: :b, doc: "Benchmark the solution"]
+        benchmark: [type: :boolean, default: false, short: :b, doc: "Benchmark the solution"]
       )
 
     %{options: options} = CLI.parse_or_halt!(argv, command)
@@ -50,19 +50,19 @@ defmodule Mix.Tasks.Aoc.Run do
   end
 
   defp run_print(year, day, part) do
-    result = run(year, day, part)
-    print_result(result, year, day, part)
+    {usecs, result} = :timer.tc(fn -> run(year, day, part) end)
+    print_result(result, usecs, year, day, part)
   end
 
   defp run(year, day, part) do
-    AoC.run(year, day, part, _timer = true)
+    AoC.run(year, day, part)
   rescue
     e -> {:error, {:run_error, e, __STACKTRACE__}}
   catch
     t, e -> {:error, {:run_error, {t, e}, __STACKTRACE__}}
   end
 
-  defp print_result({:ok, {time, result}}, _year, _day, part) do
+  defp print_result({:ok, result}, usecs, _year, _day, part) do
     Mix.Shell.IO.info([
       "#{part}: ",
       IO.ANSI.cyan(),
@@ -70,11 +70,11 @@ defmodule Mix.Tasks.Aoc.Run do
       inspect(result, charlists: :as_lists, pretty: true),
       IO.ANSI.normal(),
       IO.ANSI.default_color(),
-      " in #{format_time(time)}"
+      " in #{format_time(usecs)}"
     ])
   end
 
-  defp print_result({:error, :not_implemented}, year, day, part) do
+  defp print_result({:error, :not_implemented}, _usecs, year, day, part) do
     Mix.Shell.IO.info([
       IO.ANSI.yellow(),
       "#{part}: #{inspect(AoC.Mod.module_name(year, day))}.#{part}/1 is not implemented",
@@ -82,7 +82,7 @@ defmodule Mix.Tasks.Aoc.Run do
     ])
   end
 
-  defp print_result({:error, {:run_error, e, stack}}, year, day, part) do
+  defp print_result({:error, {:run_error, e, stack}}, _usecs, year, day, part) do
     CLI.error(
       "#{part}: #{inspect(AoC.Mod.module_name(year, day))}.#{part}/1 error: #{run_error_message(e, stack)}"
     )
@@ -102,7 +102,7 @@ defmodule Mix.Tasks.Aoc.Run do
 
   defp benchmark(year, day, parts) do
     parts = Enum.filter(parts, &match?({:ok, _}, run(year, day, &1)))
-    benchables = Enum.map(parts, fn part -> {part, fn -> AoC.run(year, day, part, false) end} end)
+    benchables = Enum.map(parts, fn part -> {part, fn -> AoC.run(year, day, part) end} end)
 
     case benchables do
       [] ->

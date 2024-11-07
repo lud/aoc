@@ -23,7 +23,7 @@ defmodule AoC.Permutations do
 
   def of([]), do: []
 
-  def of(_.._ = range) do
+  def of(_.._//_ = range) do
     of(Enum.to_list(range))
   end
 

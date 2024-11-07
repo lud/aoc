@@ -102,7 +102,8 @@ defmodule AoC.Input do
       {:error, :enoent} ->
         case suffix do
           nil ->
-            with {:ok, content} <- AoC.API.fetch_input(year, day) do
+            with :ok <- ensure_gitignore(),
+                 {:ok, content} <- AoC.API.fetch_input(year, day) do
               write_input(year, day, content)
             end
 
@@ -122,8 +123,12 @@ defmodule AoC.Input do
     Path.join(year_dir(year), "day-#{day}-#{suffix}.inp")
   end
 
+  defp input_root_path do
+    Path.join([File.cwd!(), "priv", "input"])
+  end
+
   defp year_dir(year) when is_integer(year) do
-    year_dir = Path.join([File.cwd!(), "priv", "input", Integer.to_string(year)])
+    year_dir = Path.join(input_root_path(), Integer.to_string(year))
     File.mkdir_p!(year_dir)
     year_dir
   end
@@ -133,5 +138,18 @@ defmodule AoC.Input do
     IO.puts("Writing input #{year}--#{day} to #{path}")
     File.write(path, content)
     {:ok, path}
+  end
+
+  defp ensure_gitignore do
+    path = Path.join(input_root_path(), ".gitignore") |> dbg()
+
+    if File.regular?(path) do
+      :ok
+    else
+      File.write(path, """
+      *
+      !.gitignore
+      """)
+    end
   end
 end

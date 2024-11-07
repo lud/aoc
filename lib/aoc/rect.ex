@@ -15,7 +15,7 @@ defmodule AoC.Rect do
     %__MODULE__{xa: xa, ya: ya, xo: xo, yo: yo, value: value}
   end
 
-  def from_ranges(x1..x2, y1..y2, value \\ nil) do
+  def from_ranges(x1..x2//_, y1..y2//_, value \\ nil) do
     xa = min(x1, x2)
     ya = min(y1, y2)
     xo = max(x1, x2)

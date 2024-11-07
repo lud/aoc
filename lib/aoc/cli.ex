@@ -63,7 +63,7 @@ defmodule AoC.CLI do
 
     options
   rescue
-    e -> CLI.halt_error(e.message)
+    e -> CLI.halt_error(CLI.errmsg(e))
   end
 
   defp default_opt(:year) do
@@ -120,10 +120,16 @@ defmodule AoC.CLI do
   end
 
   defp dump_defaults(defaults) do
+
     Enum.each(@custom_defaults_keys, fn key ->
       case Map.fetch(defaults, key) do
         {:ok, v} -> CLI.warn("Using default #{key}: #{inspect(v)}")
+        :error -> :ok
       end
     end)
   end
+
+  def errmsg(%{__exception__: true} = e), do: Exception.message(e)
+  def errmsg(binary) when is_binary(binary), do: binary
+  def errmsg(other), do: inspect(other)
 end

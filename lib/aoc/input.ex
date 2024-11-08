@@ -140,7 +140,7 @@ defmodule AoC.Input do
   defp write_input(year, day, content) do
     path = input_path(year, day, nil)
     IO.puts("Writing input #{year}--#{day} to #{path}")
-    File.write(path, content)
+    File.write!(path, content)
     {:ok, path}
   end
 

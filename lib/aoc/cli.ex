@@ -3,7 +3,7 @@ defmodule AoC.CLI do
   use CliMate
 
   def init_env do
-    Application.ensure_all_started(:aoc)
+    {:ok, _} = Application.ensure_all_started(:aoc)
     Mix.Task.run("loadpaths")
   end
 

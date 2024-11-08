@@ -15,7 +15,8 @@ defmodule AoC.MixProject do
       docs: docs(),
       versioning: versioning(),
       modkit: modkit(),
-      package: package()
+      package: package(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -78,6 +79,15 @@ defmodule AoC.MixProject do
       source_url: @source_url,
       source_ref: "v#{@version}",
       formatters: ["html"]
+    ]
+  end
+
+  defp dialyzer do
+    [
+      flags: [:unmatched_returns, :error_handling, :unknown, :extra_return],
+      list_unused_filters: true,
+      # plt_add_deps: :app_tree,
+      plt_add_apps: [:mix]
     ]
   end
 

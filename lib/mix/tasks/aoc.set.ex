@@ -79,7 +79,7 @@ defmodule Mix.Tasks.Aoc.Set do
         _ -> CLI.custom_defaults()
       end
 
-    overwrites = Map.drop(options, [:reset, :help]) |> dbg()
+    overwrites = Map.drop(options, [:reset, :help])
 
     CLI.write_defaults(Map.merge(base_defaults, overwrites))
   end

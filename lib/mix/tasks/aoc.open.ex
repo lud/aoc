@@ -20,13 +20,14 @@ defmodule Mix.Tasks.Aoc.Open do
   def run(argv) do
     CLI.init_env()
 
-    %{options: options} = CLI.parse_or_halt!(argv, @command) |> dbg()
-    %{year: year, day: day} = CLI.validate_options!(options) |> dbg()
+    %{options: options} = CLI.parse_or_halt!(argv, @command)
+    %{year: year, day: day} = CLI.validate_options!(options)
 
     {:ok, open_com} = browser()
     url = "https://adventofcode.com/#{year}/day/#{day}"
     os_command = String.to_charlist(open_com <> " '#{url}'")
 
+    # credo:disable-for-next-line
     :os.cmd(os_command)
   end
 

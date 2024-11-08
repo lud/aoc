@@ -87,11 +87,10 @@ defmodule AoC.CLI do
   def default_opt(:day = key), do: use_default(key, &valid_day?/1, &current_day/0)
 
   def default_opt(:skip_comments) do
-    case custom_defaults() |> dbg() do
+    case custom_defaults() do
       %{skip_comments: skip?} when is_boolean(skip?) -> skip?
       _ -> false
     end
-    |> dbg()
   end
 
   defp use_default(key, validate_fun, base_default) do

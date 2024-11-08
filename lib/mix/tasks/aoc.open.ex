@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Aoc.Open do
   @command CLI.year_day_command(__MODULE__)
 
   @moduledoc """
-  Opens the puzzle page with your defined browser.
+  Opens the puzzle page with your defined browser on on adventofcode.com.
 
   The command to call with the URL will be defined in the following order:
 

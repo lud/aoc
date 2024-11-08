@@ -24,8 +24,13 @@ defmodule Mix.Tasks.Aoc.Create do
   * Create the solution module.
   * Create a test module.
 
-  Note that existing files will not be overwritten. It is safe to call the
-  command again if you need to regenerate a deleted file.
+  Existing files will not be overwritten. It is safe to call the command again
+  if you need to regenerate a deleted file.
+
+  The generated files will contain some comment blocks to help you get
+  accustomed to using this library. This can be annoying after some time. You
+  may disable generating those comments by setting `mix aoc.set -C` or passing
+  that `-C` flag when calling `mix aoc.create`.
 
   #{CLI.format_usage(@command, format: :moduledoc)}
   """

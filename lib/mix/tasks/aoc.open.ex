@@ -2,14 +2,38 @@ defmodule Mix.Tasks.Aoc.Open do
   alias AoC.CLI
   use Mix.Task
 
-  @shortdoc "Open the problem page"
+  @shortdoc "Opens the problem puzzle on adventofcode.com"
+  @command CLI.year_day_command(__MODULE__)
+
+  @moduledoc """
+  Opens the puzzle page with your defined browser.
+
+  The command to call with the URL will be defined in the following order:
+
+  * Using the `AOC_BROWSER` environment variable.
+  * Using the `BROWSER` environment variable.
+  * Fallback to `xdg-open`.
+
+  #{CLI.format_usage(@command, format: :moduledoc)}
+  """
 
   def run(argv) do
     CLI.init_env()
 
-    %{options: options} = CLI.parse_or_halt!(argv, CLI.year_day_command(__MODULE__))
-    %{year: year, day: day} = CLI.validate_options!(options)
+    %{options: options} = CLI.parse_or_halt!(argv, @command) |> dbg()
+    %{year: year, day: day} = CLI.validate_options!(options) |> dbg()
 
-    System.cmd("xdg-open", ["https://adventofcode.com/#{year}/day/#{day}"])
+    {:ok, open_com} = browser()
+    url = "https://adventofcode.com/#{year}/day/#{day}"
+    os_command = String.to_charlist(open_com <> " '#{url}'")
+
+    :os.cmd(os_command)
+  end
+
+  def browser do
+    with :error <- System.fetch_env("AOC_BROWSER"),
+         :error <- System.fetch_env("BROWSER") do
+      {:ok, "xdg-open"}
+    end
   end
 end

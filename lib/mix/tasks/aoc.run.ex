@@ -2,18 +2,29 @@ defmodule Mix.Tasks.Aoc.Run do
   alias AoC.CLI
   use Mix.Task
 
-  @shortdoc "Run the solution for a given year and day"
+  @shortdoc "Runs the solution for a puzzle"
+
+  @command CLI.part_command(__MODULE__,
+             benchmark: [
+               type: :boolean,
+               default: false,
+               short: :b,
+               doc:
+                 "Runs the solution repeatedly for 5 seconds to print statistics about execution time."
+             ]
+           )
+
+  @moduledoc """
+  Runs your solution with the corresponding year/day input from `priv/inputs`.
+
+  #{CLI.format_usage(@command, format: :moduledoc)}
+  """
 
   def run(argv) do
     CLI.compile()
     CLI.init_env()
 
-    command =
-      CLI.part_command(__MODULE__,
-        benchmark: [type: :boolean, default: false, short: :b, doc: "Benchmark the solution"]
-      )
-
-    %{options: options} = CLI.parse_or_halt!(argv, command)
+    %{options: options} = CLI.parse_or_halt!(argv, @command)
     %{year: year, day: day, part: part} = CLI.validate_options!(options)
 
     case AoC.Input.ensure_local(year, day) do

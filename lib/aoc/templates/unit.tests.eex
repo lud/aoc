@@ -3,6 +3,7 @@ defmodule <%= inspect vars.test_module %> do
   alias <%= inspect vars.module %>, as: Solution, warn: false
   use ExUnit.Case, async: true
 
+  <%= if vars.comments? do %>
   # To run the test, run one of the following commands:
   #
   #     mix AoC.test --year <%= vars.year %> --day <%= vars.day %>
@@ -19,6 +20,7 @@ defmodule <%= inspect vars.test_module %> do
   #     {:ok, path} = Input.resolve(<%= vars.year %>, <%= vars.day %>, "mysuffix")
   #
   # Good luck!
+  <% end %>
 
   defp solve(input, part) do
     problem =
@@ -41,8 +43,10 @@ defmodule <%= inspect vars.test_module %> do
     assert CHANGE_ME == solve(input, :part_one)
   end
 
+  <%= if vars.comments? do %>
   # Once your part one was successfully sumbitted, you may uncomment this test
   # to ensure your implementation was not altered when you implement part two.
+  <% end %>
 
   # @part_one_solution CHANGE_ME
   #
@@ -62,8 +66,10 @@ defmodule <%= inspect vars.test_module %> do
   #   assert CHANGE_ME == solve(input, :part_two)
   # end
 
+  <%= if vars.comments? do %>
   # You may also implement a test to validate the part two to ensure that you
   # did not broke your shared modules when implementing another problem.
+  <% end %>
 
   # @part_two_solution CHANGE_ME
   #

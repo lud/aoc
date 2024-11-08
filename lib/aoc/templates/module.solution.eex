@@ -2,6 +2,7 @@ defmodule <%= inspect vars.module %> do
   alias AoC.Input
 
   def parse(input, _part) do
+    <%= if vars.comments? do %>
     # This function will receive the input path or an %AoC.Input.TestInput{}
     # struct.  To support the test you may read both types of input with either:
     #
@@ -17,13 +18,16 @@ defmodule <%= inspect vars.module %> do
     # input
     # |> Input.stream!()
     # |> Enum.map!(&my_parse_line_function/1)
+    <% end %>
 
     Input.read!(input)
   end
 
   def part_one(problem) do
+    <%= if vars.comments? do %>
     # This function receives the problem returned by parse/2 and must return
     # today's problem solution for part one.
+    <% end %>
     problem
   end
 

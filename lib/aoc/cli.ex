@@ -22,16 +22,14 @@ defmodule AoC.CLI do
               short: :y,
               doc: "Year of the puzzle",
               default: &__MODULE__.default_opt/1,
-              default_doc:
-                "Default value can be defined using `mix aoc.set`, otherwise uses today's year."
+              default_doc: "Defaults to today's year or custom default."
             ],
             day: [
               type: :integer,
               short: :d,
               doc: "Day of the puzzle",
               default: &__MODULE__.default_opt/1,
-              default_doc:
-                "Default value can be defined using `mix aoc.set`, otherwise uses today's day."
+              default_doc: "Defaults to today's day or custom default."
             ]
           ],
           opts

@@ -16,7 +16,7 @@ defmodule AoC.RectTest do
       ExUnit.CaptureIO.capture_io(fn ->
         rectangles
         |> to_grid(f)
-        |> Grid.print_map(fn
+        |> Grid.print(fn
           nil -> "⋅"
           char when is_binary(char) -> char
           n when is_integer(n) -> Integer.to_string(n)

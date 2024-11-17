@@ -66,23 +66,33 @@ defmodule AoC.Grid do
     {min_x(keys), max_x(keys), min_y(keys), max_y(keys)}
   end
 
+  @deprecated "use format/2"
   def format_map(map, print_char \\ &self_char/1) do
-    {xl, xh, yl, yh} = bounds(map)
+    format(map, print_char)
+  end
+
+  def format(grid, print_char \\ &self_char/1) do
+    {xl, xh, yl, yh} = bounds(grid)
 
     for y <- yl..yh do
       [
         "\n",
         for x <- xl..xh do
-          print_char.(Map.get(map, {x, y}))
+          print_char.(Map.get(grid, {x, y}))
         end
       ]
     end
   end
 
+  @deprecated "use print/2"
   def print_map(map, print_char \\ &self_char/1) do
-    IO.puts(format_map(map, print_char))
+    print(map, print_char)
+  end
 
-    map
+  def print(grid, print_char \\ &self_char/1) do
+    IO.puts(format(grid, print_char))
+
+    grid
   end
 
   defp self_char(nil), do: " "
@@ -143,12 +153,13 @@ defmodule AoC.Grid do
     ]
   end
 
-  def translate({x, y}, :n), do: {x, y - 1}
-  def translate({x, y}, :ne), do: {x + 1, y - 1}
-  def translate({x, y}, :nw), do: {x - 1, y - 1}
-  def translate({x, y}, :s), do: {x, y + 1}
-  def translate({x, y}, :se), do: {x + 1, y + 1}
-  def translate({x, y}, :sw), do: {x - 1, y + 1}
-  def translate({x, y}, :w), do: {x - 1, y}
-  def translate({x, y}, :e), do: {x + 1, y}
+  def translate(xy, direction, n \\ 1)
+  def translate({x, y}, :n, n), do: {x, y - n}
+  def translate({x, y}, :ne, n), do: {x + n, y - n}
+  def translate({x, y}, :nw, n), do: {x - n, y - n}
+  def translate({x, y}, :s, n), do: {x, y + n}
+  def translate({x, y}, :se, n), do: {x + n, y + n}
+  def translate({x, y}, :sw, n), do: {x - n, y + n}
+  def translate({x, y}, :w, n), do: {x - n, y}
+  def translate({x, y}, :e, n), do: {x + n, y}
 end

@@ -1,5 +1,7 @@
 # Advent Of Code
 
+
+
 This is a small collection of command line tools to help with [Advent of
 Code](https://adventofcode.com/) by managing inputs, tests and boilerplate code
 while you focus on problem solving!
@@ -20,6 +22,7 @@ while you focus on problem solving!
   - [mix.aoc.fetch](#mixaocfetch)
   - [mix.aoc.url](#mixaocurl)
   - [Custom default values for commands](#custom-default-values-for-commands)
+- [Upgrading to `0.12`](#upgrading-to-012)
 
 ## Quickstart Guide
 
@@ -559,3 +562,22 @@ can just call `mix aoc.test` or `mix aoc.run` without options.
 * `mix aoc.set --reset` – Delete every default values.
 
 
+## Upgrading to `0.12`
+
+If you have been using this library in the past, there have been quite some
+changes in the way the generated files are located.
+
+You will need to rename your modules for days 1 to 9 with a leading `0`, for instance day 1:
+
+```
+find lib  -type f -exec sed -i -e 's/.Day1\b/.Day01\b/' {} \;
+find test -type f -exec sed -i -e 's/.Day1\b/.Day01\b/' {} \;
+find test -type f -exec sed -i 's/.Day1Test/.Day01Test/' {} \;
+```
+
+Do this for all 9 days, then call `mix deps.get` and `mix mod.relocate -i` to
+move your old modules.
+
+Sorry for the inconvenience. That change was necessary to have a clean ordering
+of files in the solutions directories and to allow everyone to generate the
+modules in a directory according to their prefix.

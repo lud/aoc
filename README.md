@@ -37,7 +37,7 @@ with `mix new my_app`.
 ```elixir
 defp deps do
   [
-    {:aoc, "~> 0.11"},
+    {:aoc, "~> 0.12"},
   ]
 end
 ```

@@ -2,7 +2,7 @@ defmodule AoC.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/lud/aoc"
-  @version "0.11.5"
+  @version "0.12.0"
 
   def project do
     [
@@ -106,7 +106,10 @@ defmodule AoC.MixProject do
   end
 
   def update_readme(vsn) do
-    Mix.Task.run("run", ["tools/regen-readme.exs", vsn])
+    case System.cmd("mix", ["run", "tools/regen-readme.exs", vsn]) do
+      {_, 0} -> :ok
+      {out, _} -> {:error, out}
+    end
   end
 
   defp gen_changelog(vsn) do

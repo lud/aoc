@@ -2,58 +2,79 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.12.0] - 2024-11-18
+
+### 🚀 Features
+
+- Write .gitignore file when downloading inputs
+- Generate zero-padded modules names and files
+- Mix aoc.set will not reset unspecified values by default
+- Generate user modules using modkit mounts
+- README guide for newcomers
+
+### 📚 Documentation
+
+- Rewrite documentation of commands
+- Generate commands docs in README.md
+
+### ⚙️ Miscellaneous Tasks
+
+- Upgrade all dependencies
+- Simplify year/day defaults description
+- Fix dialyzer warnings
+
 ## [0.11.5] - 2024-01-02
 
-### Features
+### 🚀 Features
 
 - Added AoC.Permutations tool
 
 ## [0.11.4] - 2023-12-31
 
-### Features
+### 🚀 Features
 
 - Added the AoC.Rect module to work with rectangle in grids
 
 ## [0.11.3] - 2023-12-30
 
-### Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
 - Fix debug
 
 ## [0.11.2] - 2023-12-30
 
-### Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
 - Added github URL in user agent
 - Use new cli_mate defaults
 
 ## [0.11.1] - 2023-12-22
 
-### Features
+### 🚀 Features
 
 - Added format_map to grid
 - The part_two function will be commented out in generated solution
 
 ## [0.11.0] - 2023-12-21
 
-### Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
 - Fixed error reporting, added test flags
 
 ## [0.10.0] - 2023-12-08
 
-### Features
+### 🚀 Features
 
 - Mix aoc.url
 - Print created modules paths on their own line
 
-### Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
 - Bump vsn in README.md
 
 ## [0.7.0] - 2023-12-05
 
-### Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
 - Change generated test ordering
 

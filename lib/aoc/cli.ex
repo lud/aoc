@@ -111,7 +111,7 @@ defmodule AoC.CLI do
     data =
       defaults
       |> tap(&CLI.writeln(["New default options: ", inspect(&1)]))
-      |> :erlang.term_to_binary()
+      |> encode_defaults()
 
     File.write(defaults_file(), data)
   end
@@ -134,9 +134,30 @@ defmodule AoC.CLI do
     file = defaults_file()
 
     if File.exists?(file) do
-      file |> File.read!() |> :erlang.binary_to_term([:safe])
+      file |> File.read!() |> decode_defaults()
     else
       %{}
+    end
+  end
+
+  @default_keys [:year, :day, :skip_comments]
+  @default_keys_bin Enum.map(@default_keys, &Atom.to_string/1)
+
+  Enum.each(@default_keys, fn atom ->
+    defp load_default_key(unquote(Atom.to_string(atom))), do: unquote(atom)
+  end)
+
+  defp encode_defaults(map) when is_map(map) do
+    map |> Map.take(@default_keys) |> Map.new() |> Jason.encode!(pretty: true) |> Kernel.<>("\n")
+  end
+
+  defp decode_defaults(json) do
+    case Jason.decode(json) do
+      {:ok, data} ->
+        data |> Map.take(@default_keys_bin) |> Map.new(fn {k, v} -> {load_default_key(k), v} end)
+
+      {:error, e} ->
+        CLI.halt_error("Could not load defaults file: #{Exception.message(e)}")
     end
   end
 

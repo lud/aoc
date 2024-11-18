@@ -63,6 +63,8 @@ defmodule Readme do
         |> String.replace("## Usage", "#### Usage")
         |> String.replace("## Options", "#### Options")
 
+      block_content = ["### ", block_name, "\n\n" | block_content]
+
       update_block(lines, block_name, block_content)
     end)
   end

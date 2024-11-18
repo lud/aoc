@@ -47,6 +47,7 @@ defmodule AoC.MixProject do
       {:req, "~> 0.5"},
       {:benchee, "~> 1.2"},
       {:modkit, "~> 0.6.0"},
+      {:jason, "> 1.0.0"},
 
       # DX
       {:credo, "~> 1.6", only: :dev, runtime: false},

@@ -18,4 +18,30 @@ defmodule AoC.Mod do
   defp prefix do
     Application.fetch_env!(:aoc, :prefix)
   end
+
+  def module_path(module) do
+    modkit_mount = Modkit.load_current_project().mount
+
+    case Modkit.Mount.preferred_path(modkit_mount, module) do
+      {:ok, path} ->
+        path
+
+      {:error, :not_mounted} ->
+        raise """
+        invalid modkit configuration
+
+        If you use Modkit in your project, make sure that the configured prefix
+        for AoC is defined in your mount points.
+
+        # Module
+        #{inspect(module)}
+
+        # AoC config
+        config :aoc, prefix: #{inspect(prefix())}
+
+        # Modkit config
+        #{inspect(modkit_mount)}
+        """
+    end
+  end
 end

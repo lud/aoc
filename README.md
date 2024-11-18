@@ -56,7 +56,7 @@ import Config
 
 # The prefix is used when creating solutions and test modules with
 # `mix aoc.create`.
-config :aoc, prefix: MyApp
+config :aoc, prefix: MyApp.Solutions
 ```
 
 
@@ -319,7 +319,7 @@ be called by `mix aoc.run` and the generated tests.
 (Note: You can generate modules without the help comments by passing the `-C` flag in `mix aoc.create`.)
 
 ```elixir
-defmodule MyApp.Y24.Day01 do
+defmodule MyApp.Solutions.Y24.Day01 do
   alias AoC.Input
 
   def parse(input, _part) do

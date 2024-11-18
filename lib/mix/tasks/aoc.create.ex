@@ -63,14 +63,14 @@ defmodule Mix.Tasks.Aoc.Create do
   end
 
   defp ensure_solution_module(year, day, comments?) do
-    module_dir = Path.join([File.cwd!(), "lib", "solutions", "#{year}"])
-    File.mkdir_p!(module_dir)
-    module_path = Path.join(module_dir, "day#{CodeGen.pad_day(day)}.ex")
+    module = AoC.Mod.module_name(year, day)
+    module_path = AoC.Mod.module_path(module)
+    module_dir = Path.dirname(module_path)
 
     if not File.exists?(module_path) do
-      module = AoC.Mod.module_name(year, day)
       code = module_code(module, comments?)
       Mix.Shell.IO.info("Creating module #{inspect(module)}")
+      File.mkdir_p!(module_dir)
       File.write!(module_path, code)
     end
 

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.13.0] - 2024-11-22
+
+### 🚀 Features
+
+- Use Elixir config to configure comments generation
+
+### ⚙️ Miscellaneous Tasks
+
+- Upgrade guide in README
+
 ## [0.12.0] - 2024-11-18
 
 ### 🚀 Features

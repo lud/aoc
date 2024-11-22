@@ -1,3 +1,6 @@
+install:
+  mix deps.get
+
 test:
   mix test
 
@@ -16,4 +19,4 @@ readme:
 _git_status:
   git status
 
-check: format test credo dialyzer readme _git_status
+check: install format test credo dialyzer readme _git_status

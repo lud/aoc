@@ -3,6 +3,8 @@ defmodule Mix.Tasks.Aoc.Open do
   use Mix.Task
 
   @shortdoc "Opens the problem puzzle on adventofcode.com"
+  @requirements ["app.config"]
+
   @command CLI.year_day_command(__MODULE__)
 
   @moduledoc """

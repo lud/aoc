@@ -4,6 +4,7 @@ defmodule Mix.Tasks.Aoc.Test do
   use Mix.Task
 
   @shortdoc "Runs the tests for a given year and day"
+  @requirements ["app.config"]
 
   @command CLI.year_day_command(__MODULE__,
              trace: [type: :boolean, doc: "forward option to `mix test`"],

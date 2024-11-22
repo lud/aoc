@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Aoc.Set do
   use Mix.Task
 
   @shortdoc "Sets or reset default year and day options for other commands"
+  @requirements ["app.config"]
 
   @defaults_file CLI.defaults_file()
 
@@ -12,12 +13,6 @@ defmodule Mix.Tasks.Aoc.Set do
     options: [
       year: [type: :integer, short: :y, doc: "Year to use as default."],
       day: [type: :integer, short: :d, doc: "Day to force as default."],
-      skip_comments: [
-        type: :boolean,
-        short: :C,
-        doc:
-          "Disable including comments as a default when generating Elixir files. Default inclusion can be explicitly enabled with --no-skip-comments."
-      ],
       reset: [
         type: :boolean,
         short: :r,

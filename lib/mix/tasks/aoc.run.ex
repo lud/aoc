@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Aoc.Run do
   use Mix.Task
 
   @shortdoc "Runs the solution for a puzzle"
+  @requirements ["app.config"]
 
   @command CLI.part_command(__MODULE__,
              benchmark: [

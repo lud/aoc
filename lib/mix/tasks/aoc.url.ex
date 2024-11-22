@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Aoc.Url do
   use Mix.Task
 
   @shortdoc "Prints problem page URL"
+  @requirements ["app.config"]
 
   @command CLI.year_day_command(__MODULE__)
 

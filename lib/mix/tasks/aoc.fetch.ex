@@ -3,6 +3,8 @@ defmodule Mix.Tasks.Aoc.Fetch do
   use Mix.Task
 
   @shortdoc "Fetch the Advent of Code puzzle input"
+  @requirements ["app.config"]
+
   @command CLI.year_day_command(__MODULE__)
 
   @moduledoc """

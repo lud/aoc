@@ -15,9 +15,7 @@ defmodule AoC.Mod do
     Module.concat([prefix(), "Y#{year - 2000}", "Day#{CodeGen.pad_day(day)}Test"])
   end
 
-  defp prefix do
-    Application.fetch_env!(:aoc, :prefix)
-  end
+  defp prefix, do: AoC.Config.prefix!()
 
   def module_path(module) do
     modkit_mount = Modkit.load_current_project().mount

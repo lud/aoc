@@ -4,17 +4,9 @@ defmodule Mix.Tasks.Aoc.Create do
   use Mix.Task
 
   @shortdoc "Creates the files to solve an Advent of Code puzzle"
+  @requirements ["app.config"]
 
-  @command CLI.year_day_command(__MODULE__,
-             skip_comments: [
-               type: :boolean,
-               short: :C,
-               doc: "Do not include help comments in the generated code",
-               default: &CLI.default_opt/1,
-               default_doc:
-                 "Default value can be defined using `mix aoc.set`, otherwise comments are included."
-             ]
-           )
+  @command CLI.year_day_command(__MODULE__)
 
   @moduledoc """
   This task will execute the following operations:
@@ -29,8 +21,10 @@ defmodule Mix.Tasks.Aoc.Create do
 
   The generated files will contain some comment blocks to help you get
   accustomed to using this library. This can be annoying after some time. You
-  may disable generating those comments by setting `mix aoc.set -C` or passing
-  that `-C` flag when calling `mix aoc.create`.
+  may disable generating those comments by setting the appropriate configuration
+  option:
+
+      config :aoc, generate_comments: false
 
   #{CLI.format_usage(@command, format: :moduledoc)}
   """
@@ -39,8 +33,8 @@ defmodule Mix.Tasks.Aoc.Create do
 
     %{options: options} = CLI.parse_or_halt!(argv, @command)
 
-    %{year: year, day: day, skip_comments: skip_comments?} = CLI.validate_options!(options)
-    comments? = not skip_comments?
+    %{year: year, day: day} = CLI.validate_options!(options)
+    comments? = AoC.Config.generate_comments?()
 
     download_input = Task.async(AoC.Input, :ensure_local, [year, day])
 

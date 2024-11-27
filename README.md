@@ -231,9 +231,18 @@ in there:
 #### Solve the puzzle
 
 Finally, once your tests seem correct, you can use `mix aoc.run` to run your
-solution with the actual input.
+solution with the actual input. It will print something like that:
 
-And it's time to submit your first answer to the AoC website. Hopefully, it will be right!
+```text
+Solution for 2023 day 1
+part_one: 1014171 in 17.16ms
+```
+
+And it's time to submit your first answer to the AoC website. Hopefully, it will
+be right!
+
+When you have the right solution, just uncomment the `test "part two example"`
+block in your test, and the `part_two/1` function in your solution module, and you're ready for part two.
 
 Happy coding :)
 

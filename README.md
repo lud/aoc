@@ -73,7 +73,7 @@ config :aoc,
   # Optional
 
   # Include help comments when generating modules and tests.
-  generate_comments: false
+  generate_comments: true
 ```
 
 **Tip**: The configuration can be defined in `config/runtime.exs` instead.

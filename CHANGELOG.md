@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.13.1] - 2024-11-27
+
+### ⚙️ Miscellaneous Tasks
+
+- Updated readme
+
 ## [0.13.0] - 2024-11-22
 
 ### 🚀 Features

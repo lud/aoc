@@ -67,7 +67,7 @@ defmodule AoC.MixProject do
 
   def cli do
     [
-      preferred_envs: ["aoc.test": :test]
+      preferred_envs: ["aoc.test": :test, dialyzer: :test]
     ]
   end
 

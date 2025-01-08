@@ -11,7 +11,7 @@ defmodule Mix.Tasks.Aoc.Run do
                default: false,
                short: :b,
                doc:
-                 "Runs the solution repeatedly for 5 seconds to print statistics about execution time."
+                 "Runs the solution parts repeatedly for 5 seconds to print statistics about execution time."
              ]
            )
 
@@ -40,30 +40,41 @@ defmodule Mix.Tasks.Aoc.Run do
       CLI.color(:yellow, to_string(day))
     ])
 
-    part = translate_part(part)
-    run_print(year, day, part)
+    benchmarkable_parts =
+      part
+      |> expand_parts()
+      |> Stream.map(fn part -> {part, run_part(year, day, part)} end)
+      |> Stream.map(fn {part, {usecs, result}} ->
+        print_result(result, usecs, year, day, part)
+        {part, result}
+      end)
+      |> Stream.filter(fn {_part, result} -> match?({:ok, _}, result) end)
+      |> Enum.map(fn {part, _} -> part end)
 
     if options.benchmark do
-      benchmark(year, day, [part])
+      benchmark(year, day, benchmarkable_parts)
     end
   end
 
-  defp translate_part(n) do
+  defp expand_parts(n) do
     case n do
-      1 -> :part_one
-      2 -> :part_two
-      nil -> nil
+      1 -> [:part_one]
+      2 -> [:part_two]
+      nil -> [:part_one, :part_two]
     end
   end
 
-  defp run_print(year, day, nil) do
-    run_print(year, day, :part_one)
-    run_print(year, day, :part_two)
+  defp run_part(year, day, part) do
+    {_usecs, _result} = spawn_run(year, day, part)
   end
 
-  defp run_print(year, day, part) do
-    {usecs, result} = :timer.tc(fn -> run(year, day, part) end)
-    print_result(result, usecs, year, day, part)
+  defp spawn_run(year, day, part) do
+    task =
+      Task.async(fn ->
+        {_usecs, _result} = :timer.tc(fn -> run(year, day, part) end)
+      end)
+
+    Task.await(task, :infinity)
   end
 
   defp run(year, day, part) do
@@ -108,12 +119,7 @@ defmodule Mix.Tasks.Aoc.Run do
     Exception.format_banner(kind, e, stack)
   end
 
-  defp benchmark(year, day, [nil]) do
-    benchmark(year, day, [:part_one, :part_two])
-  end
-
   defp benchmark(year, day, parts) do
-    parts = Enum.filter(parts, &match?({:ok, _}, run(year, day, &1)))
     benchables = Enum.map(parts, fn part -> {part, fn -> AoC.run(year, day, part) end} end)
 
     case benchables do

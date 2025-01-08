@@ -15,7 +15,7 @@ defmodule AoC do
     end
   end
 
-  defp find_module(year, day) do
+  def find_module(year, day) do
     with {:error, _} <- Code.ensure_loaded(Mod.module_name(year, day)),
          {:error, _} <- Code.ensure_loaded(Mod.legacy_module_name(year, day)) do
       {:error, :not_implemented}
@@ -27,7 +27,7 @@ defmodule AoC do
   defp do_run(year, day, module, part) when is_atom(module) and part in [:part_one, :part_two] do
     with {:ok, input_path} <- Input.ensure_local(year, day),
          :ok <- ensure_part(module, part) do
-      {:ok, do_run_part(module, part, input_path)}
+      {:ok, call_part(module, part, input_path)}
     else
       {:error, :nofile} -> {:error, :not_implemented}
       {:error, _} = err -> err
@@ -42,7 +42,7 @@ defmodule AoC do
     end
   end
 
-  defp do_run_part(module, part, input_path) do
+  defp call_part(module, part, input_path) do
     problem = generate_problem(module, part, input_path)
     apply(module, part, [problem])
   end

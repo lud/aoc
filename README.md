@@ -496,7 +496,7 @@ mix aoc.run [options]
 * `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
 * `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
 * `-p, --part <integer>` - Part of the puzzle. Defaults to both parts.
-* `-b, --benchmark` - Runs the solution repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
+* `-b, --benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
 * `--help` - Displays this help.
 
 

@@ -1,4 +1,5 @@
 defmodule AoC.ComputeCache do
+  @moduledoc false
   defmacro __using__(opts) do
     quote bind_quoted: binding() do
       cache_vsn = Keyword.get(opts, :version, 0)

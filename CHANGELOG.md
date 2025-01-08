@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.14.0] - 2025-01-08
+
+### 🐛 Bug Fixes
+
+- Ensure aoc.run will run both parts in separate processes
+
+### ⚙️ Miscellaneous Tasks
+
+- Update dependabot config (#3)
+- Update CI config (#4)
+
 ## [0.13.1] - 2024-11-27
 
 ### ⚙️ Miscellaneous Tasks

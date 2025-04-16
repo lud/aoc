@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.15.0] - 2025-04-16
+
+### ⚙️ Miscellaneous Tasks
+
+- Update Elixir workflow (#8)
+- Update Elixir workflow (#9)
+- Update dependabot config (#11)
+- Update Elixir workflow (#15)
+- Update Elixir workflow (#17)
+
 ## [0.14.0] - 2025-01-08
 
 ### 🐛 Bug Fixes

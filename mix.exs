@@ -43,7 +43,7 @@ defmodule AoC.MixProject do
   defp deps do
     [
       # Lib
-      {:cli_mate, "~> 0.6", runtime: false},
+      {:cli_mate, "~> 0.7", runtime: false},
       {:req, "~> 0.5"},
       {:benchee, "~> 1.2"},
       {:modkit, "~> 0.6.0"},
@@ -89,7 +89,7 @@ defmodule AoC.MixProject do
       flags: [:unmatched_returns, :error_handling, :unknown, :extra_return],
       list_unused_filters: true,
       # plt_add_deps: :app_tree,
-      plt_add_apps: [:mix],
+      plt_add_apps: [:mix, :cli_mate],
       plt_local_path: "_build/plts"
     ]
   end

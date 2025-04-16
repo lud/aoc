@@ -1,6 +1,7 @@
 defmodule AoC.CLI do
   alias AoC.CLI
-  use CliMate
+  require CliMate
+  CliMate.extend_cli()
 
   def init_env do
     {:ok, _} = Application.ensure_all_started(:aoc)

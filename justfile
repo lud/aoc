@@ -11,7 +11,7 @@ dialyzer:
   mix dialyzer
 
 format:
-  mix format
+  mix format --migrate
 
 readme:
   mix run tools/regen-readme.exs

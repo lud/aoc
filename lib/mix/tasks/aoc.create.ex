@@ -90,7 +90,7 @@ defmodule Mix.Tasks.Aoc.Create do
   end
 
   def print_path(name, path) do
-    CLI.writeln([CLI.color(:magenta, name), "\n", path])
+    CLI.writeln([CLI.color(name, :magenta), "\n", path])
   end
 
   defp module_code(module, comments?) do

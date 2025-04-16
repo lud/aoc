@@ -383,9 +383,9 @@ mix aoc.open [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.open -->
@@ -421,9 +421,9 @@ mix aoc.create [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.create -->
@@ -465,14 +465,14 @@ mix aoc.test [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `--trace` - forward option to `mix test`.
-* `--stale` - forward option to `mix test`.
-* `--failed` - forward option to `mix test`.
-* `--seed <integer>` - forward option to `mix test`.
-* `--max-failures <integer>` - forward option to `mix test`.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `--trace`- forward option to `mix test`
+* `--stale`- forward option to `mix test`
+* `--failed`- forward option to `mix test`
+* `--seed <integer>`- forward option to `mix test`
+* `--max-failures <integer>`- forward option to `mix test`
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.test -->
@@ -493,11 +493,11 @@ mix aoc.run [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `-p, --part <integer>` - Part of the puzzle. Defaults to both parts.
-* `-b, --benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `-p, --part <integer>`- Part of the puzzle Defaults to both parts.
+* `-b, --benchmark`- Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.run -->
@@ -520,9 +520,9 @@ mix aoc.fetch [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.fetch -->
@@ -552,9 +552,9 @@ mix aoc.url [options]
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle. Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle. Defaults to today's day or custom default.
-* `--help` - Displays this help.
+* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
+* `--help`- Displays this help.
 
 
 <!-- endblock:mix.aoc.url -->

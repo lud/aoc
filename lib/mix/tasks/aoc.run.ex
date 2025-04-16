@@ -35,9 +35,9 @@ defmodule Mix.Tasks.Aoc.Run do
 
     CLI.writeln([
       "Solution for ",
-      CLI.color(:yellow, to_string(year)),
+      CLI.color(to_string(year), :yellow),
       " day ",
-      CLI.color(:yellow, to_string(day))
+      CLI.color(to_string(day), :yellow)
     ])
 
     benchmarkable_parts =

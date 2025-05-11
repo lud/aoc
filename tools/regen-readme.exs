@@ -65,7 +65,7 @@ defmodule Readme do
 
       block_content = ["### ", block_name, "\n\n" | block_content]
 
-      update_block(lines, String.replace(block_name, " ","."), block_content)
+      update_block(lines, String.replace(block_name, " ", "."), block_content)
     end)
   end
 end

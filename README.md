@@ -15,12 +15,12 @@ while you focus on problem solving!
   - [Call your solution module manually](#call-your-solution-module-manually)
   - [TL; DR](#tl-dr)
 - [Available Commands](#available-commands)
-  - [mix.aoc.open](#mixaocopen)
-  - [mix.aoc.create](#mixaoccreate)
-  - [mix.aoc.test](#mixaoctest)
-  - [mix.aoc.run](#mixaocrun)
-  - [mix.aoc.fetch](#mixaocfetch)
-  - [mix.aoc.url](#mixaocurl)
+  - [mix aoc.open](#mix-aocopen)
+  - [mix aoc.create](#mix-aoccreate)
+  - [mix aoc.test](#mix-aoctest)
+  - [mix aoc.run](#mix-aocrun)
+  - [mix aoc.fetch](#mix-aocfetch)
+  - [mix aoc.url](#mix-aocurl)
   - [Custom default values for commands](#custom-default-values-for-commands)
 - [Upgrading to `0.12`](#upgrading-to-012)
 
@@ -365,7 +365,7 @@ You may also get a quick summary of options by calling those commands with the
 
 
 <!-- block:mix.aoc.open -->
-### mix.aoc.open
+### mix aoc.open
 
 Opens the puzzle page with your defined browser on on adventofcode.com.
 
@@ -377,15 +377,14 @@ The command to call with the URL will be defined in the following order:
 
 #### Usage
 
-```shell
-mix aoc.open [options]
-```
+    mix aoc.open [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.open -->
@@ -394,7 +393,7 @@ mix aoc.open [options]
 
 
 <!-- block:mix.aoc.create -->
-### mix.aoc.create
+### mix aoc.create
 
 This task will execute the following operations:
 
@@ -415,15 +414,14 @@ option:
 
 #### Usage
 
-```shell
-mix aoc.create [options]
-```
+    mix aoc.create [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.create -->
@@ -432,7 +430,7 @@ mix aoc.create [options]
 
 
 <!-- block:mix.aoc.test -->
-### mix.aoc.test
+### mix aoc.test
 
 Runs your test file for the Advent of Code puzzle.
 
@@ -459,20 +457,19 @@ end
 
 #### Usage
 
-```shell
-mix aoc.test [options]
-```
+    mix aoc.test [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `--trace`- forward option to `mix test`
-* `--stale`- forward option to `mix test`
-* `--failed`- forward option to `mix test`
-* `--seed <integer>`- forward option to `mix test`
-* `--max-failures <integer>`- forward option to `mix test`
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `--trace` - forward option to `mix test`
+* `--stale` - forward option to `mix test`
+* `--failed` - forward option to `mix test`
+* `--seed <integer>` - forward option to `mix test`
+* `--max-failures <integer>` - forward option to `mix test`
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.test -->
@@ -481,23 +478,22 @@ mix aoc.test [options]
 
 
 <!-- block:mix.aoc.run -->
-### mix.aoc.run
+### mix aoc.run
 
 Runs your solution with the corresponding year/day input from `priv/inputs`.
 
 #### Usage
 
-```shell
-mix aoc.run [options]
-```
+    mix aoc.run [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `-p, --part <integer>`- Part of the puzzle Defaults to both parts.
-* `-b, --benchmark`- Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-p, --part <integer>` - Part of the puzzle Defaults to both parts.
+* `-b, --benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.run -->
@@ -506,7 +502,7 @@ mix aoc.run [options]
 
 
 <!-- block:mix.aoc.fetch -->
-### mix.aoc.fetch
+### mix aoc.fetch
 
 This task will fetch the puzzle into `priv/inputs`.
 
@@ -514,15 +510,14 @@ It will not overwrite an existing input file.
 
 #### Usage
 
-```shell
-mix aoc.fetch [options]
-```
+    mix aoc.fetch [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.fetch -->
@@ -531,7 +526,7 @@ mix aoc.fetch [options]
 
 
 <!-- block:mix.aoc.url -->
-### mix.aoc.url
+### mix aoc.url
 
 Outputs the on adventofcode.com URL for a puzzle.
 
@@ -546,15 +541,14 @@ xdg-open $(mix aoc.url | grep 'https')
 
 #### Usage
 
-```shell
-mix aoc.url [options]
-```
+    mix aoc.url [options]
+
 
 #### Options
 
-* `-y, --year <integer>`- Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>`- Day of the puzzle Defaults to today's day or custom default.
-* `--help`- Displays this help.
+* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `--help` - Displays this help.
 
 
 <!-- endblock:mix.aoc.url -->
@@ -596,4 +590,4 @@ move your old modules.
 
 Sorry for the inconvenience. That change was necessary to have a clean ordering
 of files in the solutions directories and to allow everyone to generate the
-modules in a directory according to their prefix.
+modules in a directory according to their preferred namespace.

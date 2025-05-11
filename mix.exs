@@ -43,7 +43,7 @@ defmodule AoC.MixProject do
   defp deps do
     [
       # Lib
-      {:cli_mate, "~> 0.7", runtime: false},
+      {:cli_mate, "~> 0.8", runtime: false},
       {:req, "~> 0.5"},
       {:benchee, "~> 1.2"},
       {:modkit, "~> 0.6.0"},

@@ -46,12 +46,12 @@ defmodule Readme do
   defp update_command_blocks(lines_in) do
     blocks =
       %{
-        "mix.aoc.open" => Mix.Tasks.Aoc.Open,
-        "mix.aoc.create" => Mix.Tasks.Aoc.Create,
-        "mix.aoc.test" => Mix.Tasks.Aoc.Test,
-        "mix.aoc.run" => Mix.Tasks.Aoc.Run,
-        "mix.aoc.fetch" => Mix.Tasks.Aoc.Fetch,
-        "mix.aoc.url" => Mix.Tasks.Aoc.Url
+        "mix aoc.open" => Mix.Tasks.Aoc.Open,
+        "mix aoc.create" => Mix.Tasks.Aoc.Create,
+        "mix aoc.test" => Mix.Tasks.Aoc.Test,
+        "mix aoc.run" => Mix.Tasks.Aoc.Run,
+        "mix aoc.fetch" => Mix.Tasks.Aoc.Fetch,
+        "mix aoc.url" => Mix.Tasks.Aoc.Url
       }
 
     Enum.reduce(blocks, lines_in, fn {block_name, module}, lines ->
@@ -60,12 +60,12 @@ defmodule Readme do
         |> Code.fetch_docs()
         |> elem(4)
         |> Map.fetch!("en")
-        |> String.replace("## Usage", "#### Usage")
+        |> String.replace("## Synopsis", "#### Usage")
         |> String.replace("## Options", "#### Options")
 
       block_content = ["### ", block_name, "\n\n" | block_content]
 
-      update_block(lines, block_name, block_content)
+      update_block(lines, String.replace(block_name, " ","."), block_content)
     end)
   end
 end

@@ -46,7 +46,7 @@ defmodule AoC.MixProject do
       {:cli_mate, "~> 0.8", runtime: false},
       {:req, "~> 0.5"},
       {:benchee, "~> 1.2"},
-      {:modkit, "~> 0.7.0"},
+      {:modkit, "~> 0.8.0"},
       {:jason, "> 1.0.0"},
 
       # DX

@@ -80,8 +80,6 @@ defmodule AoC.CLI do
       CLI.halt_error(CLI.errmsg(e))
   end
 
-
-
   @doc """
   Returns a default value for the `--year` or `--day` CLI options.
 

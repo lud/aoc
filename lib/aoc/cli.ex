@@ -58,6 +58,10 @@ defmodule AoC.CLI do
 
   defp valid_year?(year), do: year in 2015..current_year()
   defp valid_day?(day), do: day in 1..25
+
+  defp valid_day?(2025, day), do: day in 1..12
+  defp valid_day?(_uear, day), do: day in 1..25
+
   defp valid_part?(part), do: part in [1, 2]
 
   def validate_options!(options) do
@@ -66,7 +70,7 @@ defmodule AoC.CLI do
     part = Map.get(options, :part)
 
     if not valid_year?(year), do: raise("Invalid year: #{year}")
-    if not valid_day?(day), do: raise("Invalid day: #{day}")
+    if not valid_day?(year, day), do: raise("Invalid day: #{day}")
     if part && not valid_part?(part), do: raise("Invalid part: #{part}")
 
     options
@@ -75,6 +79,8 @@ defmodule AoC.CLI do
       CLI.error(Exception.format(:error, e, __STACKTRACE__))
       CLI.halt_error(CLI.errmsg(e))
   end
+
+
 
   @doc """
   Returns a default value for the `--year` or `--day` CLI options.

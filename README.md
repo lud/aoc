@@ -382,8 +382,8 @@ The command to call with the URL will be defined in the following order:
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
 
@@ -419,8 +419,8 @@ option:
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
 
@@ -462,8 +462,8 @@ end
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--trace` - forward option to `mix test`
 * `--stale` - forward option to `mix test`
 * `--failed` - forward option to `mix test`
@@ -489,10 +489,10 @@ Runs your solution with the corresponding year/day input from `priv/inputs`.
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
-* `-p, --part <integer>` - Part of the puzzle Defaults to both parts.
-* `-b, --benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-p`, `--part <integer>` - Part of the puzzle Defaults to both parts.
+* `-b`, `--benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
 * `--help` - Displays this help.
 
 
@@ -515,8 +515,8 @@ It will not overwrite an existing input file.
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
 
@@ -546,8 +546,8 @@ xdg-open $(mix aoc.url | grep 'https')
 
 #### Options
 
-* `-y, --year <integer>` - Year of the puzzle Defaults to today's year or custom default.
-* `-d, --day <integer>` - Day of the puzzle Defaults to today's day or custom default.
+* `-y`, `--year <integer>` - Year of the puzzle Defaults to today's year or custom default.
+* `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
 

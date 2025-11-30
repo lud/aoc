@@ -1,3 +1,8 @@
+## [0.16.1] - 2025-11-30
+
+### ⚙️ Miscellaneous Tasks
+
+- *(libcheck)* Update Elixir Github workflow (#58)
 ## [0.16.0] - 2025-11-23
 
 ### 🚀 Features

@@ -38,8 +38,9 @@ defmodule AoC.CLI do
     ]
   end
 
+  # Use UTC-5 in December, thanks rvnash ;)
+  defp current_day, do: DateTime.shift(DateTime.utc_now(), hour: -5).day
   defp current_year, do: Date.utc_today().year
-  defp current_day, do: Date.utc_today().day
 
   def part_command(module, opts \\ []) do
     year_day_command(

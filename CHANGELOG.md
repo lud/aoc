@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.16.2] - 2025-12-09
+
+### 🐛 Bug Fixes
+
+- Use correct timezone for default day in CLI options
+
 ## [0.16.0] - 2025-11-23
 
 ### 🚀 Features

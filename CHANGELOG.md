@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.16.3] - 2025-12-12
+
+### 🚀 Features
+
+- Support retrieving session file in Windows USERPROFILE directory
+
 ## [0.16.2] - 2025-12-09
 
 ### 🐛 Bug Fixes

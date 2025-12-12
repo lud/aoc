@@ -37,8 +37,15 @@ defmodule AoC.API do
   end
 
   def cookie_path do
-    home = System.fetch_env!("HOME")
+    home = find_home_dir()
     Path.join(home, ".adventofcode.session")
+  end
+
+  defp find_home_dir do
+    case :os.type() do
+      {:unix, _} -> System.fetch_env!("HOME")
+      {:win32, _} -> System.fetch_env!("USERPROFILE")
+    end
   end
 
   defp read_cookie! do

@@ -97,10 +97,17 @@ end
 The cookie is used to authenticate with the AoC website. This library will only
 use it to fetch your inputs and save them locally.
 
-Retrieve your cookie from the AoC website (with you browser developer tools) and
-write the session ID in `$HOME/.adventofcode.session`. It should be a long hex
-number like `53616c7415146f5f1d5792d97e...`
+First, retrieve your cookie from the AoC website (with you browser developer tools) and write its content to a file in your home directory.
 
+**Unix based systems**
+
+The file will be read from `$HOME/.adventofcode.session`, for instance
+`/home/Alice/.adventofcode.session`.
+
+**Windows**
+
+The file will be read from `%USERPROFILE%\.adventofcode.session`, for instance
+`C:\Users\Alice\.adventofcode.session`.
 
 ### Are you trying this library before December 1st ?
 

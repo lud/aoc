@@ -104,14 +104,18 @@ defmodule AoC.Input do
       {:error, :enoent} ->
         case suffix do
           nil ->
-            with :ok <- ensure_gitignore(),
-                 {:ok, content} <- AoC.API.fetch_input(year, day) do
-              write_input(year, day, content)
-            end
+            download_input(year, day)
 
           _ ->
             {:error, :enoent}
         end
+    end
+  end
+
+  defp download_input(year, day) do
+    with :ok <- ensure_gitignore(),
+         {:ok, content} <- AoC.API.fetch_input(year, day) do
+      write_input(year, day, content)
     end
   end
 

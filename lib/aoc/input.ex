@@ -17,10 +17,6 @@ defmodule AoC.Input do
     content
   end
 
-  def read!(path) when is_binary(path) do
-    File.read!(path)
-  end
-
   def stream!(path, opts \\ []) do
     stream_file_lines(path, opts)
   end

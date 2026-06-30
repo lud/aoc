@@ -1,6 +1,14 @@
 # Advent Of Code
 
-
+<!-- rdmx :badges
+    hexpm         : "aoc?color=4e2a8e"
+    github_action : "lud/aoc/elixir.yaml?label=CI&branch=main"
+    license       : aoc
+    -->
+[![hex.pm Version](https://img.shields.io/hexpm/v/aoc?color=4e2a8e)](https://hex.pm/packages/aoc)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/lud/aoc/elixir.yaml?label=CI&branch=main)](https://github.com/lud/aoc/actions/workflows/elixir.yaml?query=branch%3Amain)
+[![License](https://img.shields.io/hexpm/l/aoc.svg)](https://hex.pm/packages/aoc)
+<!-- rdmx /:badges -->
 
 This is a small collection of command line tools to help with [Advent of
 Code](https://adventofcode.com/) by managing inputs, tests and boilerplate code
@@ -36,15 +44,15 @@ This framework is distributed as a library as it consists mostly of mix tasks.
 You may add the dependency to your project, or add it to a new project created
 with `mix new my_app`.
 
-<!-- block:as_dep -->
+<!-- rdmx :app_dep vsn:$app_vsn -->
 ```elixir
-defp deps do
+def deps do
   [
     {:aoc, "~> 0.16"},
   ]
 end
 ```
-<!-- endblock:as_dep -->
+<!-- rdmx /:app_dep -->
 
 Then call `mix deps.get` before following the rest of this guide.
 
@@ -371,7 +379,7 @@ You may also get a quick summary of options by calling those commands with the
 ---
 
 
-<!-- block:mix.aoc.open -->
+<!-- rdmx aoc:task_doc task:"aoc.open" -->
 ### mix aoc.open
 
 Opens the puzzle page with your defined browser on on adventofcode.com.
@@ -393,13 +401,12 @@ The command to call with the URL will be defined in the following order:
 * `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.open -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 
 
-<!-- block:mix.aoc.create -->
+<!-- rdmx aoc:task_doc task:"aoc.create" -->
 ### mix aoc.create
 
 This task will execute the following operations:
@@ -430,13 +437,12 @@ option:
 * `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.create -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 
 
-<!-- block:mix.aoc.test -->
+<!-- rdmx aoc:task_doc task:"aoc.test" -->
 ### mix aoc.test
 
 Runs your test file for the Advent of Code puzzle.
@@ -478,13 +484,12 @@ end
 * `--max-failures <integer>` - forward option to `mix test`
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.test -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 
 
-<!-- block:mix.aoc.run -->
+<!-- rdmx aoc:task_doc task:"aoc.run" -->
 ### mix aoc.run
 
 Runs your solution with the corresponding year/day input from `priv/inputs`.
@@ -502,13 +507,12 @@ Runs your solution with the corresponding year/day input from `priv/inputs`.
 * `-b`, `--benchmark` - Runs the solution parts repeatedly for 5 seconds to print statistics about execution time. Defaults to `false`.
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.run -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 
 
-<!-- block:mix.aoc.fetch -->
+<!-- rdmx aoc:task_doc task:"aoc.fetch" -->
 ### mix aoc.fetch
 
 This task will fetch the puzzle into `priv/inputs`.
@@ -526,13 +530,12 @@ It will not overwrite an existing input file.
 * `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.fetch -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 
 
-<!-- block:mix.aoc.url -->
+<!-- rdmx aoc:task_doc task:"aoc.url" -->
 ### mix aoc.url
 
 Outputs the on adventofcode.com URL for a puzzle.
@@ -557,8 +560,7 @@ xdg-open $(mix aoc.url | grep 'https')
 * `-d`, `--day <integer>` - Day of the puzzle Defaults to today's day or custom default.
 * `--help` - Displays this help.
 
-
-<!-- endblock:mix.aoc.url -->
+<!-- rdmx /aoc:task_doc -->
 
 ---
 

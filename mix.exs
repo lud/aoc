@@ -9,6 +9,7 @@ defmodule AoC.MixProject do
       app: :aoc,
       version: @version,
       elixir: "~> 1.14",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       cli: cli(),
       deps: deps(),
@@ -19,6 +20,9 @@ defmodule AoC.MixProject do
       dialyzer: dialyzer()
     ]
   end
+
+  defp elixirc_paths(:dev), do: ["lib", "dev"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp package do
     [
@@ -50,7 +54,8 @@ defmodule AoC.MixProject do
       {:jason, "> 1.0.0"},
 
       # DX
-      {:libdev, ">= 0.0.0", only: [:dev, :test], runtime: false}
+      {:libdev, ">= 0.0.0", only: [:dev, :test], runtime: false},
+      {:readmix, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -58,6 +63,7 @@ defmodule AoC.MixProject do
     [
       mount: [
         {AoC, "lib/aoc"},
+        {AoC.DocGen, "dev/doc_gen"},
         {Mix.Tasks, "lib/mix/tasks", flavor: :mix_task}
       ]
     ]
@@ -96,7 +102,7 @@ defmodule AoC.MixProject do
     [
       annotate: true,
       before_commit: [
-        &update_readme/1,
+        &readmix/1,
         {:add, "README.md"},
         &gen_changelog/1,
         {:add, "CHANGELOG.md"}
@@ -104,11 +110,9 @@ defmodule AoC.MixProject do
     ]
   end
 
-  def update_readme(vsn) do
-    case System.cmd("mix", ["run", "tools/regen-readme.exs", vsn]) do
-      {_, 0} -> :ok
-      {out, _} -> {:error, out}
-    end
+  def readmix(vsn) do
+    rdmx = Readmix.new(vars: %{app_vsn: vsn})
+    Readmix.update_file(rdmx, "README.md")
   end
 
   defp gen_changelog(vsn) do

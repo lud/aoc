@@ -14,7 +14,7 @@ format:
   mix format --migrate
 
 readme:
-  mix run tools/regen-readme.exs
+  mix rdmx.update README.md
 
 _libdev_check:
   mix libdev.check

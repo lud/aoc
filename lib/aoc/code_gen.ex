@@ -1,4 +1,5 @@
 defmodule AoC.CodeGen do
+  @moduledoc false
   require EEx
   @template_dir __ENV__.file |> Path.dirname() |> Path.join("templates")
   @module_tpl Path.join(@template_dir, "module.solution.eex")

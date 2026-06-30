@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Aoc.Open do
     :os.cmd(os_command)
   end
 
-  def browser do
+  defp browser do
     with :error <- System.fetch_env("AOC_BROWSER"),
          :error <- System.fetch_env("BROWSER") do
       {:ok, "xdg-open"}

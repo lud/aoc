@@ -1,4 +1,5 @@
 defmodule AoC.CLI do
+  @moduledoc false
   alias AoC.CLI
   require CliMate
   CliMate.extend_cli()

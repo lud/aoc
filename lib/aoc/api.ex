@@ -1,6 +1,7 @@
 defmodule AoC.API do
+  @moduledoc false
   @mix_version Mix.Project.get!().project() |> Keyword.fetch!(:version)
-  def user_agent do
+  defp user_agent do
     "github.com/lud/aoc #{@mix_version}"
   end
 
@@ -12,7 +13,7 @@ defmodule AoC.API do
     "https://adventofcode.com/#{year}/day/#{day}/input"
   end
 
-  def headers do
+  defp headers do
     cookie = read_cookie!()
 
     [

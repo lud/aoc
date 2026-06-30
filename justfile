@@ -16,7 +16,10 @@ format:
 readme:
   mix run tools/regen-readme.exs
 
+_libdev_check:
+  mix libdev.check
+
 _git_status:
   git status
 
-check: install format test credo dialyzer readme _git_status
+check: format readme _libdev_check _git_status
